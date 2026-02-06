@@ -4,7 +4,7 @@ import { SignInSignOutSchema } from '../validate'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { actions as authActions} from '../slices/authentificationSlice'
+import { setCredentials} from '../slices/authentificationSlice'
 import axios from "axios";
 const Login = () => {
 
@@ -25,9 +25,10 @@ const dispatch = useDispatch();
             password
         })
         localStorage.setItem('token', response.data.token)
+        localStorage.setItem('username', username)
         setauthFailed(false)
         console.log(response.data)
-        dispatch(authActions.setCredentials({user: username, token: response.data.token}))
+        dispatch(setCredentials({user: username, token: response.data.token}))
         navigate('/')
       }
       catch(error) {
