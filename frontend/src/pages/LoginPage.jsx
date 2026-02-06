@@ -2,7 +2,7 @@ import React from "react";
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import { SignInSignOutSchema } from '../validate'
 import { useNavigate } from 'react-router-dom'
-import {  useState } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { actions as authActions} from '../slices/authentificationSlice'
 import axios from "axios";
@@ -27,7 +27,7 @@ const dispatch = useDispatch();
         localStorage.setItem('token', response.data.token)
         setauthFailed(false)
         console.log(response.data)
-        dispatch(authActions.setCredentials({username: username, token: response.data.token}))
+        dispatch(authActions.setCredentials({user: username, token: response.data.token}))
         navigate('/')
       }
       catch(error) {
