@@ -1,4 +1,5 @@
 import React from "react";
+import { MessageForm } from "./MessageForm";
 
 export const MessageArea = ({ messages, channels, currentChannelId }) => {
     const currentChannel = channels.find((c) => String(c.id) === String(currentChannelId));
@@ -16,9 +17,10 @@ export const MessageArea = ({ messages, channels, currentChannelId }) => {
                 <div id="messages-box" className="chat-messages overflow-auto px-5">
                 {currentMessages.map((msg)=> (
                     <div key={msg.id} className="text-break mb-2">
-                        <b>{msg.user}</b>: {msg.body}
+                        <b>{msg.username}</b>: {msg.body}
                     </div>
                         ))}
+                        <MessageForm currentChannelId={currentChannelId} />
                 </div>
                 </div>
             </div>

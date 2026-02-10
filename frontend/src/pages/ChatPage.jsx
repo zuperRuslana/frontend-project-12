@@ -1,18 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {useFetchChannelsQuery} from '../slices/channelsApi'
 import {useFetchMessagesQuery} from '../slices/messagesApi'
 import { ChannelSidebar } from '../components/ChannelSidebar'
 import { MessageArea } from '../components/MessageArea'
 import { Header } from "../components/Header";
-
+import  socket  from "../socket";
 const Chats = () => {
 
-const {error: channelsError, isLoading: loadingChannels, data: channels } = useFetchChannelsQuery()  
-const { error: messagesError, isLoading: loadingMessages, data: messages } = useFetchMessagesQuery()
+
+const {error: channelsError, isLoading: loadingChannels, data: channels, refetch: refetchChannels } = useFetchChannelsQuery()  
+const { error: messagesError, isLoading: loadingMessages, data: messages,refetch: refetchMessages } = useFetchMessagesQuery()
 const [currentChannelId, setCurrentChannelId] = useState('1')
+
+
+useEffect(()=> {
+    socket.on('connect', () => { 
+        console.log(`Connected: ${socket.id}`) 
+    })
+    socket.on ('newMessage', (message) => {
+        console.log(message)
+        refetchMessages()
+    })
+
+    socket.on('removeChannel', (channelToDelete) => {
+        console.log(channelToDelete)
+        refetchChannels()
+      })
+      // subscribe rename channel
+      socket.on('renameChannel', (channelToChange) => {
+        console.log(channelToChange)
+        refetchChannels()
+      })
+        return () => {
+            socket.off('connect')
+    socket.off('newMessage')
+    socket.off('removeChannel')
+    socket.off('renameChannel')
+  }
+}, [])
 
 if (loadingChannels || loadingMessages ) return <div>Загрузка...</div>
 if (channelsError || messagesError) return <div>Ошибка загрузки</div>
+
+
 
     return (
         <div className="h-100">

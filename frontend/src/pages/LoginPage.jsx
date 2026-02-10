@@ -1,6 +1,6 @@
 import React from "react";
 import { Field, Formik, Form, ErrorMessage } from "formik";
-import { SignInSignOutSchema } from '../validate'
+import { SignInSchema} from '../validate'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux';
@@ -17,7 +17,7 @@ const dispatch = useDispatch();
   return ( 
   <Formik
     initialValues={{ username: "", password: "" }}
-    validationSchema={SignInSignOutSchema}
+    validationSchema={SignInSchema}
     onSubmit={async ({username, password}) => {
       try {
         const response= await axios.post('/api/v1/login',{
