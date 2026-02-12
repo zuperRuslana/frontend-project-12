@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button"
 import { useState } from 'react'
-
+import { ModalWindow } from "./ModalChannels"
 
 export const ChannelSidebar = ({ channels, setCurrentChannelId }) => {
 
@@ -25,6 +25,7 @@ console.log('channels:', channels)
                         </svg>
                         <span className="visually-hidden">+</span>
                     </Button>
+                    {modal ? <ModalWindow toggle={toggle} /> : ''}
                     </div>
                     <ul className="nav flex-column nav-pills px-2 pb-2 overflow-auto flex-grow-1 mb-0">
                     {channels.map((channel)=>(

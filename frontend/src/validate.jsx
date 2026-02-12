@@ -25,4 +25,10 @@ const SignUpSchema = Yup.object().shape({
     .required('Required')
     .oneOf([Yup.ref('password'),null], 'Passwords must match')
 })
-export {SignInSchema, SignUpSchema}
+
+const channelSchema = Yup.object().shape({
+    channelName: Yup.string()
+    .min(3, 'Too short!')
+    .max(20, 'Too Long!')
+})
+export {SignInSchema, SignUpSchema, channelSchema}
