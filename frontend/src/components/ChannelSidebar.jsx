@@ -4,7 +4,7 @@ import { ModalWindow } from "./ModalChannels"
 import { ChannelDropdown } from "./ChannelDropdown"
 import { Plus } from 'react-bootstrap-icons'
 
-export const ChannelSidebar = ({ channels, setCurrentChannelId }) => {
+export const ChannelSidebar = ({ channels, setCurrentChannelId, currentChannelId }) => {
 
 const [modalState, setModalState] = useState({
     isOpen: false,
@@ -60,6 +60,8 @@ console.log('channels:', channels)
                                         id ={channel.id} 
                                         name={channel.name}
                                         setCurrentChannelId={setCurrentChannelId}
+                                        currentChannelId={currentChannelId} 
+
                                     /> 
                                 : <button 
                                 onClick={()=> setCurrentChannelId(channel.id)}
