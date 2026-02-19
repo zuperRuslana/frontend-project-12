@@ -1,11 +1,12 @@
 import React from "react";
 import {channelSchema} from '../validate'
 import { Field, Formik, Form, ErrorMessage } from "formik";
-import {useAddChannelMutation, useFetchChannelsQuery} from '../slices/channelsApi'
+import {useAddChannelMutation, useFetchChannelsQuery, useEditChannelMutation} from '../slices/channelsApi'
 import { Modal } from 'react-bootstrap'
 
-export const ModalWindow = ({toggle}) => {
+export const ModalWindow = ({modalState, closeModal, setCurrentChannelId}) => {
 const [addChannel] = useAddChannelMutation()
+const [editChannel] = useEditChannelMutation()
 const {data: channels} = useFetchChannelsQuery()
 
 const uniqueCheck = (channel) => {
@@ -20,15 +21,28 @@ return undefined
 const handleAddChannel = (channelName) => {
  return addChannel({name: channelName})
 }
+const handleRenameChannel = (newName)=> {
+
+  return editChannel({
+    id: modalState.channelId,
+    name: newName})
+}
+
    return (
-    <Modal show={true} onHide={toggle}>
+    <Modal show={true} onHide={closeModal}>
     <Formik
-    initialValues={{channelName: ""}}
+    initialValues={{ channelName: modalState.type ==='rename' ? modalState.channelName : "" }}
     validationSchema={channelSchema}
     onSubmit = {async ({channelName}) =>{
       try{
-        await handleAddChannel(channelName).unwrap()
-        toggle()
+        if(modalState.type === 'add') {
+          const newChannel = await handleAddChannel(channelName).unwrap()
+          setCurrentChannelId(newChannel.id)
+        }
+        else {
+          await handleRenameChannel(channelName).unwrap()
+          }
+            closeModal()
       }
       catch(error){
           console.log(error)
@@ -37,7 +51,7 @@ const handleAddChannel = (channelName) => {
   }>
       <Form>
       <Modal.Header closeButton>
-      <Modal.Title>Добавить канал</Modal.Title> 
+      <Modal.Title>{modalState.type === 'add'? 'Добавить канал' : 'Переименовать канал' } </Modal.Title> 
       </Modal.Header>
       <Modal.Body>
            <Field name="channelName" validate={validateUnique}>
@@ -57,7 +71,7 @@ const handleAddChannel = (channelName) => {
               </Modal.Body>
             <Modal.Footer>
         <button type="submit" className="btn btn-primary">Сохранить</button>
-        <button onClick ={toggle} type="button" className="btn btn-secondary" data-dismiss="modal">Отменить</button>
+        <button onClick ={closeModal} type="button" className="btn btn-secondary" data-dismiss="modal">Отменить</button>
       </Modal.Footer>
     </Form>
     </Formik>

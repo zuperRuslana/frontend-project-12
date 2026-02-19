@@ -22,12 +22,16 @@ useEffect(()=> {
         refetchMessages()
     })
 
-    socket.on('removeChannel', (channelToDelete) => {
-        console.log(channelToDelete)
-        refetchChannels()
-      })
+    //socket.on('removeChannel', (channelToDelete) => {
+       // console.log(channelToDelete)
+       // refetchChannels()
+      //})
       // subscribe rename channel
       socket.on('renameChannel', (channelToChange) => {
+        console.log(channelToChange)
+        refetchChannels()
+      })
+      socket.on('newChannel', (channelToChange) => {
         console.log(channelToChange)
         refetchChannels()
       })
@@ -35,13 +39,16 @@ useEffect(()=> {
             socket.off('connect')
     socket.off('newMessage')
     socket.off('removeChannel')
-    socket.off('renameChannel')
+    //socket.off('renameChannel')
+    socket.off('newChannel')
+
   }
 }, [])
 
 if (loadingChannels || loadingMessages ) return <div>Загрузка...</div>
 if (channelsError || messagesError) return <div>Ошибка загрузки</div>
 
+console.log('Chats render, channels:', channels)
 
 
     return (
