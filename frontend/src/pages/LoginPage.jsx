@@ -15,6 +15,12 @@ const dispatch = useDispatch();
 
 
   return ( 
+    
+    <div className="d-flex align-items-center justify-content-center vh-100">
+<div className="card shadow-sm" style={{ width: '100%', maxWidth: '500px' }}>
+        <div className="card-body p-4">
+          <h1 className="text-center mb-4">Войти</h1>
+
   <Formik
     initialValues={{ username: "", password: "" }}
     validationSchema={SignInSchema}
@@ -40,11 +46,8 @@ const dispatch = useDispatch();
 }
   >
     {() => (
-    <div className="container text-center" >
-     <div className="row justify-content-center align-content-center h-100">
 
-      <Form className="col-md-auto">
-      <h1 className="text-center mb-4">Войти</h1>
+      <Form className="col-md-auto card-text">
         <div className="form-floating mb-3">
           <Field name="username" >
             {({field, meta})=>(
@@ -60,6 +63,7 @@ const dispatch = useDispatch();
             )}
         </Field>
         </div>
+
         <div className="form-floating mb-3">
           <Field name="password">
             {({field,meta})=> (
@@ -76,14 +80,21 @@ const dispatch = useDispatch();
             )}
         </Field>
         </div>
-        {authFailed ? <div className="text-danger mb-3">the username or password is incorrect</div> : ''}
+        {authFailed ? <div className="text-danger mb-3"> Неверный логин или пароль</div> : ''}
 
-        <button type="submit">Войти</button>
+        <button className="btn btn-outline-secondary w-100 mb-3" type="submit">Войти</button>
       </Form>
-      </div>
-      </div>
     )}
   </Formik>
+  <div className="card-footer text-center bg-light py-3">
+  <span className="text-muted">Нет аккаунта? </span>
+  <a href="/signup" className="text-slate">Регистрация</a>
+  </div>
+
+     </div>
+     </div>
+     </div>
+  
   )
 };
 export default Login;

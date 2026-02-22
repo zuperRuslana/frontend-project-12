@@ -54,8 +54,6 @@ console.log('Chats render, channels:', channels)
     return (
         <div className="h-100">
         <div className="d-flex flex-column vh-100">
-            <Header />
-
         <div className="flex-grow-1 min-vh-0 py-4">
             <div className="container h-100">
             <div className="card h-100 border-0 shadow overflow-hidden">

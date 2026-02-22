@@ -17,6 +17,11 @@ const dispatch = useDispatch();
 
 
   return ( 
+  
+    <div className="d-flex align-items-center justify-content-center vh-100">
+    <div className="card shadow-sm" style={{ width: '100%', maxWidth: '500px' }}>
+        <div className="card-body p-4">
+          <h1 className="text-center mb-4">Регистрация</h1>
   <Formik
     initialValues={{ username: "", password: "" , password2: ""}}
     validationSchema={SignUpSchema} 
@@ -47,7 +52,6 @@ const dispatch = useDispatch();
      <div className="row justify-content-center align-content-center h-100">
 
       <Form className="col-md-auto">
-      <h1 className="text-center mb-4">Регистрация</h1>
         <div className="form-floating mb-3">
           <Field name="username" >
             {({field, meta})=>(
@@ -79,7 +83,7 @@ const dispatch = useDispatch();
             )}
         </Field>
         </div>
-        <div className="form-floating mb-3">
+        <div className="form-floating mb-4">
           <Field name="password2">
             {({field,meta})=> (
                 <>
@@ -97,12 +101,15 @@ const dispatch = useDispatch();
         </div>
         {registerFailed ? <div className="text-danger mb-3">Такой пользователь уже существует</div> : ''}
 
-        <button type="submit">Зарегестрироваться</button>
+        <button className="btn btn-outline-secondary w-100 mb-3" type="submit">Зарегестрироваться</button>
       </Form>
       </div>
       </div>
     )}
   </Formik>
+  </div>
+  </div>
+  </div>
   )
 };
 export default Signup;
