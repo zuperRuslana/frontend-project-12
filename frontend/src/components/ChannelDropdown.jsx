@@ -1,19 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Dropdown from 'react-bootstrap/Dropdown';
-import { useRemoveChannelMutation } from "../slices/channelsApi";
 import { ButtonGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import DeleteChannelModal from "./ModalDeleteChannel";
+
 
 export const ChannelDropdown = ({openRenameModal, id, name, setCurrentChannelId, currentChannelId})=>{
 
-    const [removeChannel] = useRemoveChannelMutation();
-    const handleChannelRemove = () => {
-        removeChannel({id})
-        if (currentChannelId === id) 
-            {
-                setCurrentChannelId('1') 
-            }
-    }
+ const [modalIsOpened, setModalIsOpened] = useState(false)
+
+
+console.log(modalIsOpened)
+  
     
     return(
         <ButtonGroup>
@@ -22,10 +20,20 @@ export const ChannelDropdown = ({openRenameModal, id, name, setCurrentChannelId,
                 <Dropdown.Toggle split variant="light" />
                 <Dropdown.Menu>
                 <Dropdown.Item onClick={()=>openRenameModal({id, name})}>Переименовать</Dropdown.Item>
-                <Dropdown.Item onClick={handleChannelRemove}>Удалить</Dropdown.Item>
+                <Dropdown.Item onClick={()=>setModalIsOpened(true)}>Удалить</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
+            {modalIsOpened ?
+                <DeleteChannelModal 
+                id ={id} 
+                setCurrentChannelId={setCurrentChannelId} 
+                currentChannelId={currentChannelId} 
+                setModalIsOpened={setModalIsOpened}
+                modalIsOpened={modalIsOpened}/>
+                : ''} 
       </ButtonGroup>
+
+      
     );
   }
 
