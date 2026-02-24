@@ -3,8 +3,12 @@ import {channelSchema} from '../validate'
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import {useAddChannelMutation, useFetchChannelsQuery, useEditChannelMutation} from '../slices/channelsApi'
 import { Modal } from 'react-bootstrap'
+ import { useTranslation } from "react-i18next";
 
 export const ModalWindow = ({modalState, closeModal, setCurrentChannelId}) => {
+  const { t } = useTranslation();
+
+
 const [addChannel] = useAddChannelMutation()
 const [editChannel] = useEditChannelMutation()
 const {data: channels} = useFetchChannelsQuery()
@@ -14,7 +18,7 @@ const uniqueCheck = (channel) => {
 }
 
 const validateUnique = (value) => {
-if(uniqueCheck(value)) return 'Должно быть уникальным'
+if(uniqueCheck(value)) return  t('errors.unique')
 return undefined
 };
 
@@ -51,7 +55,7 @@ const handleRenameChannel = (newName)=> {
   }>
       <Form>
       <Modal.Header closeButton>
-      <Modal.Title>{modalState.type === 'add'? 'Добавить канал' : 'Переименовать канал' } </Modal.Title> 
+      <Modal.Title>{modalState.type === 'add'? t('channels.addChannel') : t('channels.rename') } </Modal.Title> 
       </Modal.Header>
       <Modal.Body>
            <Field name="channelName" validate={validateUnique}>
@@ -63,15 +67,15 @@ const handleRenameChannel = (newName)=> {
                   id="channelName"
                   className={`form-control ${(meta.touched && meta.error) ? 'is-invalid': ''}` }
                   />
-            <label className="visually-hidden" htmlFor="channelName">Имя канала</label>
+            <label className="visually-hidden" htmlFor="channelName">{t('channels.name')}</label>
             <ErrorMessage name='channelName' component='div' className="invalid-feedback" />
                 </>
                 )}
               </Field>
               </Modal.Body>
             <Modal.Footer>
-        <button type="submit" className="btn btn-primary">Сохранить</button>
-        <button onClick ={closeModal} type="button" className="btn btn-secondary" data-dismiss="modal">Отменить</button>
+        <button type="submit" className="btn btn-primary">{t('channels.save')}</button>
+        <button onClick ={closeModal} type="button" className="btn btn-secondary" data-dismiss="modal">{t('channels.cancel')}</button>
       </Modal.Footer>
     </Form>
     </Formik>

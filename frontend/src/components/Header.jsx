@@ -5,8 +5,11 @@ import Button from "react-bootstrap/Button";
 import {logOut} from '../slices/authentificationSlice'
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 
 export const Header = () => {
+    const { t } = useTranslation();
+
     const dispatch = useDispatch()
     const navigate = useNavigate(); 
     const loggedUser = useSelector((state) => state.auth.user)
@@ -24,7 +27,7 @@ return (
     <Navbar className="shadow-sm navbar-dark bg-slate">
          <Container>
             <Navbar.Brand href="/">Hexlet Chat</Navbar.Brand>
-            {loggedUser && <Button onClick={handleLogOut} className="btn-light text-slate">Выйти</Button>}
+            {loggedUser && <Button onClick={handleLogOut} className="btn-light text-slate">{t('chats.signout')}</Button>}
         </Container>
 </Navbar>
 )

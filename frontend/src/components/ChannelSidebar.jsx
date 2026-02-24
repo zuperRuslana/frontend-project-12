@@ -3,8 +3,11 @@ import { useState } from 'react'
 import { ModalWindow } from "./ModalChannels"
 import { ChannelDropdown } from "./ChannelDropdown"
 import { Plus } from 'react-bootstrap-icons'
+import { useTranslation } from "react-i18next"
+
 
 export const ChannelSidebar = ({ channels, setCurrentChannelId, currentChannelId }) => {
+    const { t } = useTranslation();
 
 const [modalState, setModalState] = useState({
     isOpen: false,
@@ -41,7 +44,8 @@ console.log('channels:', channels)
 
     return (
         <div className="col-4 col-md-2 border-end bg-light d-flex flex-column h-100 px-0">
-<div className="d-flex mt-1 justify-content-between align-items-center mb-2 ps-4 pe-2 p-4">                <b>Каналы</b>
+<div className="d-flex mt-1 justify-content-between align-items-center mb-2 ps-4 pe-2 p-4">               
+     <b>{t("chats.channels")}</b>
                 <Button 
             onClick={openAddModal}
             variant="link"
