@@ -6,9 +6,11 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { setCredentials } from "../slices/authentificationSlice";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 
 const Signup = () => {
+    const { t } = useTranslation();
 
 const [registerFailed, setRegisterFailed] = useState(false)
 
@@ -21,7 +23,7 @@ const dispatch = useDispatch();
     <div className="d-flex align-items-center justify-content-center vh-100">
     <div className="card shadow-sm" style={{ width: '100%', maxWidth: '500px' }}>
         <div className="card-body p-4">
-          <h1 className="text-center mb-4">Регистрация</h1>
+          <h1 className="text-center mb-4">{t('forms.registration')}</h1>
   <Formik
     initialValues={{ username: "", password: "" , password2: ""}}
     validationSchema={SignUpSchema} 
@@ -61,7 +63,7 @@ const dispatch = useDispatch();
           type="text" 
           id="username"
           className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid': ''}` }/>
-         <label htmlFor="username">Имя пользователя</label>
+         <label htmlFor="username">{t('forms.name')}</label>
             <ErrorMessage name='username' component='div' className="invalid-feedback" />
         </>
             )}
@@ -77,7 +79,7 @@ const dispatch = useDispatch();
                 id="password"
                 className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid': ''}` } 
                 />
-             <label htmlFor="password">Пароль</label>
+             <label htmlFor="password">{t('forms.password')}</label>
           <ErrorMessage name='password' component='div' className="invalid-feedback" />
         </>
             )}
@@ -93,15 +95,15 @@ const dispatch = useDispatch();
                 id="password2"
                 className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid': ''}` } 
                 />
-             <label htmlFor="password2">Пароль</label>
+             <label htmlFor="password2">{t('forms.password')}</label>
           <ErrorMessage name='password2' component='div' className="invalid-feedback" />
         </>
             )}
         </Field>
         </div>
-        {registerFailed ? <div className="text-danger mb-3">Такой пользователь уже существует</div> : ''}
+        {registerFailed ? <div className="text-danger mb-3">{t('errors.user_exists')}</div> : ''}
 
-        <button className="btn btn-outline-secondary w-100 mb-3" type="submit">Зарегестрироваться</button>
+        <button className="btn btn-outline-secondary w-100 mb-3" type="submit">{t('forms.register')}</button>
       </Form>
       </div>
       </div>

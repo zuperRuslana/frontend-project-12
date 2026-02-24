@@ -1,3 +1,4 @@
+
 export default {
     translation: {
        keyWithCount_one: "{{count}} message",
@@ -21,7 +22,6 @@ export default {
         addChannel: 'Add Channel',
         cancel: 'Cancel',
         send: 'Send',
-        channelCreated: 'Channel created',
         delete: 'Delete',
         rename: 'Rename',
         deleteChannel: 'Delete channel',
@@ -34,8 +34,24 @@ export default {
         sedingError: 'Sending error'
        },
        errors: {
-        unique: 'Should be unique'
-       }
+        unique: 'Should be unique',
+        error: 'The password or username does not exist',
+        page_not_exists: 'Sorry, the page you are looking for does not exist.',
+        go_to_chats: 'Go to Chats',
+        user_exists: 'This username already exists.'
+       },
+       validation: {
+        required: 'Required',
+        long: 'Too long!',
+        short: 'Too short!',
+        must_be_same: 'Passwords must match'
+       },
+       toast: {
+        channelCreated: 'Channel created',
+        channelDeleted: 'Channel deleted',
+        channelRenamed: 'Channel renamed',
+       },
+
     }
   }
   

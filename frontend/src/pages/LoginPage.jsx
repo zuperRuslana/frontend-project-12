@@ -6,7 +6,10 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { setCredentials} from '../slices/authentificationSlice'
 import axios from "axios";
+import { useTranslation } from "react-i18next";
+
 const Login = () => {
+  const { t } = useTranslation();
 
 const [authFailed, setauthFailed] = useState(false)
 
@@ -19,7 +22,7 @@ const dispatch = useDispatch();
     <div className="d-flex align-items-center justify-content-center vh-100">
 <div className="card shadow-sm" style={{ width: '100%', maxWidth: '500px' }}>
         <div className="card-body p-4">
-          <h1 className="text-center mb-4">Войти</h1>
+          <h1 className="text-center mb-4">{t('form.signin')}</h1>
 
   <Formik
     initialValues={{ username: "", password: "" }}
@@ -57,7 +60,7 @@ const dispatch = useDispatch();
           type="text" 
           id="username"
           className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid': ''}` }/>
-         <label htmlFor="username">Ваш ник</label>
+         <label htmlFor="username">{t('form.name')}</label>
             <ErrorMessage name='username' component='div' className="invalid-feedback" />
         </>
             )}
@@ -74,21 +77,21 @@ const dispatch = useDispatch();
                 id="password"
                 className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid': ''}` } 
                 />
-             <label htmlFor="password">Пароль</label>
+             <label htmlFor="password">{t('form.password')}</label>
           <ErrorMessage name='password' component='div' className="invalid-feedback" />
         </>
             )}
         </Field>
         </div>
-        {authFailed ? <div className="text-danger mb-3"> Неверный логин или пароль</div> : ''}
+        {authFailed ? <div className="text-danger mb-3"> {t('errors.error')}</div> : ''}
 
-        <button className="btn btn-outline-secondary w-100 mb-3" type="submit">Войти</button>
+        <button className="btn btn-outline-secondary w-100 mb-3" type="submit">{t('form.signin')}</button>
       </Form>
     )}
   </Formik>
   <div className="card-footer text-center bg-light py-3">
-  <span className="text-muted">Нет аккаунта? </span>
-  <a href="/signup" className="text-slate">Регистрация</a>
+  <span className="text-muted">{t('form.newUser')} </span>
+  <a href="/signup" className="text-slate">{t('form.register')}</a>
   </div>
 
      </div>

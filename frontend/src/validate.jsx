@@ -15,11 +15,11 @@ import * as Yup from 'yup';
 const SignUpSchema = Yup.object().shape({
     username: Yup.string()
     .min(3, 'Too short!')
-    .max(20, 'Too Long!')
+    .max(20, 'Too long!')
     .required('Required'),
     password: Yup.string()
     .min(5, 'Too short!')
-    .max(15, 'Too Long!')
+    .max(15, 'Too long!')
     .required('Required'),
     password2: Yup.string()
     .required('Required')
@@ -29,6 +29,8 @@ const SignUpSchema = Yup.object().shape({
 const channelSchema = Yup.object().shape({
     channelName: Yup.string()
     .min(3, 'Too short!')
-    .max(20, 'Too Long!')
+    .max(20, 'Too long!')
+    .required('Required')
+
 })
 export {SignInSchema, SignUpSchema, channelSchema}

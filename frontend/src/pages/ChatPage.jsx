@@ -3,9 +3,17 @@ import {useFetchChannelsQuery} from '../slices/channelsApi'
 import {useFetchMessagesQuery} from '../slices/messagesApi'
 import { ChannelSidebar } from '../components/ChannelSidebar'
 import { MessageArea } from '../components/MessageArea'
-import { Header } from "../components/Header";
 import  socket  from "../socket";
+import { toast } from 'react-toastify';
+import { useTranslation } from "react-i18next";
+
 const Chats = () => {
+    const { t } = useTranslation();
+
+
+const channelCreated = () => {toast(t('toast.channelCreated'))}
+const channelRenamed = () => {toast(t('toast.channelRenamed'))}
+const channelDeleted = () => {toast(t('toast.channelDeleted'))}
 
 
 const {error: channelsError, isLoading: loadingChannels, data: channels, refetch: refetchChannels } = useFetchChannelsQuery()  
@@ -24,15 +32,18 @@ useEffect(()=> {
 
     socket.on('removeChannel', (channelToDelete) => {
         console.log(channelToDelete)
+        channelDeleted()
         refetchChannels()
       })
       // subscribe rename channel
       socket.on('renameChannel', (channelToChange) => {
         console.log(channelToChange)
+        channelRenamed()
         refetchChannels()
       })
       socket.on('newChannel', (channelToChange) => {
         console.log(channelToChange)
+        channelCreated()
         refetchChannels()
       })
         return () => {
