@@ -3,7 +3,9 @@ import {channelSchema} from '../validate'
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import {useAddChannelMutation, useFetchChannelsQuery, useEditChannelMutation} from '../slices/channelsApi'
 import { Modal } from 'react-bootstrap'
- import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
+import textCensor  from '../utils/leo_profanity'
+
 
 export const ModalWindow = ({modalState, closeModal, setCurrentChannelId}) => {
   const { t } = useTranslation();
@@ -23,13 +25,14 @@ return undefined
 };
 
 const handleAddChannel = (channelName) => {
- return addChannel({name: channelName})
+ return addChannel({name: textCensor(channelName)})
 }
 const handleRenameChannel = (newName)=> {
 
   return editChannel({
     id: modalState.channelId,
-    name: newName})
+    name: textCensor(newName)
+  })
 }
 
    return (

@@ -4,8 +4,12 @@ import { useState } from "react";
 import {useAddMessageMutation} from '../slices/messagesApi'
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import textCensor  from '../utils/leo_profanity'
 
 export const MessageForm = ({currentChannelId}) => {
+
+  
+
 const { t } = useTranslation();
 
 const [newMessage, setNewMessage] = useState('')
@@ -21,7 +25,7 @@ const addSubmitMessageHandler = (event) => {
     const message = {
         channelId: currentChannelId,
         username: username,
-        body: newMessage
+        body: textCensor(newMessage)
     }
     addMessage(message)
     setNewMessage('')
