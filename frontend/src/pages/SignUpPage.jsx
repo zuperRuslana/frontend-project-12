@@ -95,7 +95,7 @@ const dispatch = useDispatch();
                 id="password2"
                 className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid': ''}` } 
                 />
-             <label htmlFor="password2">{t('forms.password')}</label>
+             <label htmlFor="password2">{t('forms.repeatPassword')}</label>
           <ErrorMessage name='password2' component='div' className="invalid-feedback" />
         </>
             )}
