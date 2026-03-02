@@ -6,9 +6,18 @@ import { MessageArea } from '../components/MessageArea'
 import  socket  from "../socket";
 import { toast } from 'react-toastify';
 import { useTranslation } from "react-i18next";
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
+
 
 const Chats = () => {
     const { t } = useTranslation();
+    const navigate = useNavigate()
+
+    const userToken = useSelector((state) => state.auth.token)
+    if(userToken === null) {
+      navigate('/login')
+    }
 
 
 const channelCreated = () => {toast(t('toast.channelCreated'))}
