@@ -23,7 +23,7 @@ const dispatch = useDispatch();
     <div className="d-flex align-items-center justify-content-center vh-100">
     <div className="card shadow-sm" style={{ width: '100%', maxWidth: '500px' }}>
         <div className="card-body p-4">
-          <h1 className="text-center mb-4">{t('forms.registration')}</h1>
+          <h1 className="text-center mb-4">{t('forms.register')}</h1>
   <Formik
     initialValues={{ username: "", password: "" , password2: ""}}
     validationSchema={SignUpSchema} 
@@ -63,7 +63,7 @@ const dispatch = useDispatch();
           type="text" 
           id="username"
           className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid': ''}` }/>
-         <label htmlFor="username">{t('forms.name')}</label>
+         <label htmlFor="username">{t('forms.login')}</label>
             <ErrorMessage name='username' component='div' className="invalid-feedback" />
         </>
             )}
@@ -103,7 +103,7 @@ const dispatch = useDispatch();
         </div>
         {registerFailed ? <div className="text-danger mb-3">{t('errors.user_exists')}</div> : ''}
 
-        <button className="btn btn-outline-secondary w-100 mb-3" type="submit">{t('forms.register')}</button>
+        <button className="btn btn-outline-secondary w-100 mb-3" type="submit">{t('forms.signup')}</button>
       </Form>
       </div>
       </div>

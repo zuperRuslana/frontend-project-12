@@ -65,8 +65,8 @@ useEffect(()=> {
   }
 }, [])
 
-if (loadingChannels || loadingMessages ) return <div>Загрузка...</div>
-if (channelsError || messagesError) return <div>Ошибка загрузки</div>
+if (loadingChannels || loadingMessages ) return <div>{t('chatsStatus.loading')}</div>
+if (channelsError || messagesError) return <div>{t('chatsStatus.loadingError')}</div>
 
 console.log('Chats render, channels:', channels)
 

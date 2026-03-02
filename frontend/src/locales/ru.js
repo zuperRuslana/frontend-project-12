@@ -5,14 +5,15 @@ export default {
       keyWithCount_few: "{{count}} сообщения",
       keyWithCount_many: "{{count}} сообщений",
 
-      form:{
+      forms:{
         signin: 'Войти',
+        login: 'Имя пользователя',
         name: 'Ваш ник',
         password: 'Пароль',
         repeatPassword: 'Подтвердите пароль',
         newUser: 'Нет аккаунта?',
-        register: 'Регестрация',
-        signup: 'Зарегестрироваться'
+        register: 'Регистрация',
+        signup: 'Зарегистрироваться'
 
        },
        chats: {
@@ -35,6 +36,10 @@ export default {
        messageStatus: {
         sending: 'Отправка...',
         sedingError: 'Ошибка отправки'
+       },
+       chatsStatus: {
+        loading: 'Загрузка...',
+        loadingError: 'Ошибка загрузки'
        },
        errors: {
         unique: 'Должно быть уникальным',

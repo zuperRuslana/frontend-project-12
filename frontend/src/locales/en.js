@@ -3,11 +3,12 @@ export default {
     translation: {
        keyWithCount_one: "{{count}} message",
        keyWithCount_other: "{{count}} messages",
-       form:{
+       forms:{
         signin: 'Sign in',
+        login: 'Username',
         name: 'Username',
-        password: 'Password',
-        repeatPassword: 'Confirm password',
+        password: 'Password:',
+        repeatPassword: 'Confirm password:',
         newUser: 'Not a user?',
         register: 'Create account',
         signup: 'Register'
@@ -32,6 +33,10 @@ export default {
        messageStatus: {
         sending: 'Sending...',
         sedingError: 'Sending error'
+       },
+       chatsStatus: {
+        loading: 'Loading...',
+        loadingError: 'Loading error'
        },
        errors: {
         unique: 'Should be unique',
