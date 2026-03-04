@@ -22,7 +22,7 @@ const dispatch = useDispatch();
     <div className="d-flex align-items-center justify-content-center vh-100">
 <div className="card shadow-sm" style={{ width: '100%', maxWidth: '500px' }}>
         <div className="card-body p-4">
-          <h1 className="text-center mb-4">{t('form.signin')}</h1>
+          <h1 className="text-center mb-4">{t('forms.signin')}</h1>
 
   <Formik
     initialValues={{ username: "", password: "" }}
@@ -60,7 +60,7 @@ const dispatch = useDispatch();
           type="text" 
           id="username"
           className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid': ''}` }/>
-         <label htmlFor="username">{t('form.name')}</label>
+         <label htmlFor="username">{t('forms.name')}</label>
             <ErrorMessage name='username' component='div' className="invalid-feedback" />
         </>
             )}
@@ -77,7 +77,7 @@ const dispatch = useDispatch();
                 id="password"
                 className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid': ''}` } 
                 />
-             <label htmlFor="password">{t('form.password')}</label>
+             <label htmlFor="password">{t('forms.password')}</label>
           <ErrorMessage name='password' component='div' className="invalid-feedback" />
         </>
             )}
@@ -85,13 +85,13 @@ const dispatch = useDispatch();
         </div>
         {authFailed ? <div className="text-danger mb-3"> {t('errors.error')}</div> : ''}
 
-        <button className="btn btn-outline-secondary w-100 mb-3" type="submit">{t('form.signin')}</button>
+        <button className="btn btn-outline-secondary w-100 mb-3" type="submit">{t('forms.signin')}</button>
       </Form>
     )}
   </Formik>
   <div className="card-footer text-center bg-light py-3">
-  <span className="text-muted">{t('form.newUser')} </span>
-  <a href="/signup" className="text-slate">{t('form.register')}</a>
+  <span className="text-muted">{t('forms.newUser')} </span>
+  <a href="/signup" className="text-slate">{t('forms.register')}</a>
   </div>
 
      </div>
