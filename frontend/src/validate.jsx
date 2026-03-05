@@ -2,35 +2,33 @@ import * as Yup from 'yup';
 
  const SignInSchema = Yup.object().shape({
     username: Yup.string()
-    .min(3, 'Too short!')
-    .max(20, 'Too Long!')
+    .min(3, 'validation.short')
+    .max(20, 'validation.long')
     .required('Required'),
     password: Yup.string()
-    .min(5, 'Too short!')
-    .max(15, 'Too Long!')
+    .min(6, 'validation.six')
     .required('Required'),
 
 })
  
 const SignUpSchema = Yup.object().shape({
     username: Yup.string()
-    .min(3, 'Too short!')
-    .max(20, 'Too long!')
-    .required('Required'),
+    .min(3, 'validation.short')
+    .max(20, 'validation.long')
+    .required('validation.required'),
     password: Yup.string()
-    .min(5, 'Too short!')
-    .max(15, 'Too long!')
-    .required('Required'),
+    .min(6, 'validation.six')
+    .required('validation.required'),
     password2: Yup.string()
-    .required('Required')
-    .oneOf([Yup.ref('password'),null], 'Passwords must match')
+    .required('validation.required')
+    .oneOf([Yup.ref('password'),null], 'validation.must_be_same')
 })
 
 const channelSchema = Yup.object().shape({
     channelName: Yup.string()
-    .min(3, 'Too short!')
-    .max(20, 'Too long!')
-    .required('Required')
+    .min(3, 'validation.short')
+    .max(20, 'validation.long')
+    .required('validation.required')
 
 })
 export {SignInSchema, SignUpSchema, channelSchema}

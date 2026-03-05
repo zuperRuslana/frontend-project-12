@@ -47,9 +47,11 @@ export default {
        },
        validation: {
         required: 'Required',
-        long: 'Too long!',
-        short: 'Too short!',
-        must_be_same: 'Passwords must match'
+        long: 'From 3 to 20 characters',
+        short: 'From 3 to 20 characters',
+        must_be_same: 'Passwords must match',
+        six: 'At least 6 characters',
+
        },
        toast: {
         channelCreated: 'Channel created',

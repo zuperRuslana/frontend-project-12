@@ -64,7 +64,9 @@ const dispatch = useDispatch();
           id="username"
           className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid': ''}` }/>
          <label htmlFor="username">{t('forms.login')}</label>
-            <ErrorMessage name='username' component='div' className="invalid-feedback" />
+            <ErrorMessage name='username'>
+            {(msg)=> <div className="invalid-feedback">{t(msg)} </div>} 
+            </ErrorMessage>
         </>
             )}
         </Field>
@@ -80,7 +82,9 @@ const dispatch = useDispatch();
                 className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid': ''}` } 
                 />
              <label htmlFor="password">{t('forms.password')}</label>
-          <ErrorMessage name='password' component='div' className="invalid-feedback" />
+          <ErrorMessage name='password'>
+          {(msg)=> <div className="invalid-feedback">{t(msg)} </div>} 
+            </ErrorMessage> 
         </>
             )}
         </Field>
@@ -96,7 +100,9 @@ const dispatch = useDispatch();
                 className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid': ''}` } 
                 />
              <label htmlFor="password2">{t('forms.repeatPassword')}</label>
-          <ErrorMessage name='password2' component='div' className="invalid-feedback" />
+          <ErrorMessage name='password2'>
+            {(msg)=> <div className="invalid-feedback">{t(msg)} </div>} 
+            </ErrorMessage> 
         </>
             )}
         </Field>

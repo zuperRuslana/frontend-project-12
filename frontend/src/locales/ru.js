@@ -51,9 +51,10 @@ export default {
        },
        validation: {
         required: 'Обязательное поле',
-        long: 'Длина от 3 до 20!',
-        short: 'Длина от 3 до 20!',
-        must_be_same: 'Passwords must match'
+        long: 'От 3 до 20!',
+        short: 'От 3 до 20!',
+        must_be_same: 'Пароли должны совпадать',
+        six: 'Не менее 6 символов',
        },
        toast: {
         channelCreated: 'Канал создан',

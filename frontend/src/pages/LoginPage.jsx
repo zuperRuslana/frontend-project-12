@@ -61,7 +61,10 @@ const dispatch = useDispatch();
           id="username"
           className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid': ''}` }/>
          <label htmlFor="username">{t('forms.name')}</label>
-            <ErrorMessage name='username' component='div' className="invalid-feedback" />
+            <ErrorMessage name='username'>
+            {(msg)=> <div className="invalid-feedback">{t(msg)}</div>}
+              </ErrorMessage> 
+            
         </>
             )}
         </Field>
@@ -78,7 +81,9 @@ const dispatch = useDispatch();
                 className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid': ''}` } 
                 />
              <label htmlFor="password">{t('forms.password')}</label>
-          <ErrorMessage name='password' component='div' className="invalid-feedback" />
+          <ErrorMessage name='password'>
+            {(msg)=> <div className="invalid-feedback">{t(msg)}</div>}
+            </ErrorMessage>  
         </>
             )}
         </Field>
