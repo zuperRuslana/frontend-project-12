@@ -50,10 +50,8 @@ const dispatch = useDispatch();
 }
   >
     {() => (
-    <div className="container text-center" >
-     <div className="row justify-content-center align-content-center h-100">
-
-      <Form className="col-md-auto">
+   
+      <Form className="col-md-auto card-text">
         <div className="form-floating mb-3">
           <Field name="username" >
             {({field, meta})=>(
@@ -111,8 +109,7 @@ const dispatch = useDispatch();
 
         <button className="btn btn-outline-secondary w-100 mb-3" type="submit">{t('forms.signup')}</button>
       </Form>
-      </div>
-      </div>
+   
     )}
   </Formik>
   </div>

@@ -2,12 +2,9 @@ import * as Yup from 'yup';
 
  const SignInSchema = Yup.object().shape({
     username: Yup.string()
-    .min(3, 'validation.short')
-    .max(20, 'validation.long')
-    .required('Required'),
+    .required('validation.required'),
     password: Yup.string()
-    .min(6, 'validation.six')
-    .required('Required'),
+    .required('validation.required'),
 
 })
  
