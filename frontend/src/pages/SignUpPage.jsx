@@ -65,7 +65,7 @@ const dispatch = useDispatch();
           className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid': ''}` }/>
          <label htmlFor="username">{t('forms.login')}</label>
             <ErrorMessage name='username'>
-            {(msg)=> <div className="invalid-feedback">{t(msg)} </div>} 
+            {(msg)=> <div placement="right" className="invalid-tooltip">{t(msg)} </div>} 
             </ErrorMessage>
         </>
             )}
@@ -83,7 +83,7 @@ const dispatch = useDispatch();
                 />
              <label htmlFor="password">{t('forms.password')}</label>
           <ErrorMessage name='password'>
-          {(msg)=> <div className="invalid-feedback">{t(msg)} </div>} 
+          {(msg)=> <div placement="right" className="invalid-tooltip">{t(msg)} </div>} 
             </ErrorMessage> 
         </>
             )}
@@ -101,7 +101,7 @@ const dispatch = useDispatch();
                 />
              <label htmlFor="password2">{t('forms.repeatPassword')}</label>
           <ErrorMessage name='password2'>
-            {(msg)=> <div className="invalid-feedback">{t(msg)} </div>} 
+            {(msg)=> <div placement="right" className="invalid-tooltip">{t(msg)} </div>} 
             </ErrorMessage> 
         </>
             )}
