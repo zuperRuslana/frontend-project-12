@@ -23,8 +23,9 @@ export const MessageArea = ({ messages, channels, currentChannelId }) => {
                         <b>{msg.username}</b>: {msg.body}
                     </div>
                         ))}
-                        <MessageForm currentChannelId={currentChannelId} />
                 </div>
+                <MessageForm currentChannelId={currentChannelId} />
+
                 </div>
             </div>
                              
