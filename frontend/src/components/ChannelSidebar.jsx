@@ -57,6 +57,7 @@ console.log('channels:', channels)
                     </div>
                     <ul className="nav flex-column nav-pills px-2 pb-2 overflow-auto flex-grow-1 mb-0">
                     {channels.map((channel)=>(
+                        
                         <li key={channel.id} className="nav-item w-100">
                             {channel.removable 
                                 ?   <ChannelDropdown 
@@ -70,7 +71,7 @@ console.log('channels:', channels)
                                 : <button 
                                 onClick={()=> setCurrentChannelId(channel.id)}
                                 className="w-100 rounded-0 text-start text-truncate btn">
-                                    {channel.name}
+                                    {`# ${channel.name}`}
                                 </button>
                         }
                         </li>

@@ -15,9 +15,9 @@ console.log(modalIsOpened)
   
     
     return(
-        <ButtonGroup>
-            <Dropdown id="dropdown-basic-button">
-                <Button variant="light" onClick={()=>setCurrentChannelId(id)}>{name}</Button>
+        <>
+            <Dropdown as={ButtonGroup} id="dropdown-basic-button" className="w-100">
+                <Button variant="light" className="w-100 text-start" onClick={()=>setCurrentChannelId(id)}>{`# ${name}`}</Button>
                 <Dropdown.Toggle split variant="light" />
                 <Dropdown.Menu>
                 <Dropdown.Item onClick={()=>openRenameModal({id, name})}>{t("channels.rename")}</Dropdown.Item>
@@ -32,9 +32,8 @@ console.log(modalIsOpened)
                 setModalIsOpened={setModalIsOpened}
                 modalIsOpened={modalIsOpened}/>
                 : ''} 
-      </ButtonGroup>
 
-      
+      </>
     );
   }
 
