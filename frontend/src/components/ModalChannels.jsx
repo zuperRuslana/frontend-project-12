@@ -71,7 +71,9 @@ const handleRenameChannel = (newName)=> {
                   className={`form-control ${(meta.touched && meta.error) ? 'is-invalid': ''}` }
                   />
             <label className="visually-hidden" htmlFor="channelName">{t('channels.name')}</label>
-            <ErrorMessage name='channelName' component='div' className="invalid-feedback" />
+            <ErrorMessage name='channelName'>
+                {(msg)=> <div placement="right" className="invalid-feedback">{t(msg)} </div>} 
+            </ErrorMessage>
                 </>
                 )}
               </Field>
