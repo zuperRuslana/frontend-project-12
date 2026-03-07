@@ -29,7 +29,8 @@ const {error: channelsError, isLoading: loadingChannels, data: channels, refetch
 const { error: messagesError, isLoading: loadingMessages, data: messages,refetch: refetchMessages } = useFetchMessagesQuery()
 const [currentChannelId, setCurrentChannelId] = useState('1')
 
-
+const channelBackgrounds = useSelector((state) => state.channelBackgrounds)
+const backgroundIndex = channelBackgrounds[currentChannelId] ?? 0
 useEffect(()=> {
     socket.on('connect', () => { 
         console.log(`Connected: ${socket.id}`) 
@@ -88,7 +89,9 @@ console.log('Chats render, channels:', channels)
             <MessageArea 
             channels={channels}
             messages={messages} 
-            currentChannelId={currentChannelId} 
+            currentChannelId={currentChannelId}
+            backgroundIndex={backgroundIndex}
+ 
             />
         </div>
         </div>

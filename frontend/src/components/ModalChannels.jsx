@@ -5,10 +5,14 @@ import {useAddChannelMutation, useFetchChannelsQuery, useEditChannelMutation} fr
 import { Modal } from 'react-bootstrap'
 import { useTranslation } from "react-i18next";
 import textCensor  from '../utils/leo_profanity'
+import { useDispatch } from 'react-redux'
+import { setChannelBackground } from '../slices/channelBackgroundsSlice'
 
 
 export const ModalWindow = ({modalState, closeModal, setCurrentChannelId}) => {
   const { t } = useTranslation();
+
+  const dispatch = useDispatch()
 
 
 const [addChannel] = useAddChannelMutation()
@@ -43,7 +47,12 @@ const handleRenameChannel = (newName)=> {
     onSubmit = {async ({channelName}) =>{
       try{
         if(modalState.type === 'add') {
+          const backgroundIndex = (channels?.length ?? 0) % 5
           const newChannel = await handleAddChannel(channelName).unwrap()
+          dispatch(setChannelBackground({
+            channelId: newChannel.id,
+            backgroundIndex
+          }))
           setCurrentChannelId(newChannel.id)
         }
         else {
