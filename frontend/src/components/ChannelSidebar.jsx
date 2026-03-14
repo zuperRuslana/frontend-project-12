@@ -2,7 +2,6 @@ import Button from "react-bootstrap/Button"
 import { useState } from 'react'
 import { ModalWindow } from "./ModalChannels"
 import { ChannelDropdown } from "./ChannelDropdown"
-import { Plus } from 'react-bootstrap-icons'
 import { useTranslation } from "react-i18next"
 
 
@@ -48,10 +47,11 @@ console.log('channels:', channels)
      <b>{t("chats.channels")}</b>
                 <Button 
             onClick={openAddModal}
-            variant="link"
-            className="btn-light p-1 text-slate border border-slate d-flex align-items-center justify-content-center"
+            size="small"
+            className="btn-light text-slate border border-slate p-0 px-2 border border-secondary justify-content-center"
 >
-  <Plus size={20} />
+<span>+</span>
+
 </Button>
                     {modalState.isOpen ? <ModalWindow modalState={modalState} closeModal={closeModal} setCurrentChannelId={setCurrentChannelId} /> : ''}
                     </div>
