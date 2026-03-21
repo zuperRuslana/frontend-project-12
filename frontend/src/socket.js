@@ -1,6 +1,6 @@
-import { io } from "socket.io-client";
+import { io } from 'socket.io-client'
 
-const socket = io(); //io() без параметров — подключится к тому же хосту откуда загружена страница (Hexlet бэкенд).
+const socket = io() //io() без параметров — подключится к тому же хосту откуда загружена страница (Hexlet бэкенд).
 
 socket.on('connect', () => {
   console.log('Socket connected:', socket.id)

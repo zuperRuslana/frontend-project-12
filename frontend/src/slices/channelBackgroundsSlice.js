@@ -7,8 +7,8 @@ const channelBackgroundsSlice = createSlice({
     setChannelBackground: (state, action) => {
       const { channelId, backgroundIndex } = action.payload
       state[channelId] = backgroundIndex
-    }
-  }
+    },
+  },
 })
 
 export const { setChannelBackground } = channelBackgroundsSlice.actions

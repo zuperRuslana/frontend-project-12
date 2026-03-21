@@ -1,20 +1,20 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
-import Button from 'react-bootstrap/Button';
-import { useRemoveChannelMutation } from "../slices/channelsApi";
- import { useTranslation } from "react-i18next";
+import Button from 'react-bootstrap/Button'
+import { useRemoveChannelMutation } from '../slices/channelsApi'
+import { useTranslation } from 'react-i18next'
 
-function DeleteChannelModal({id, setCurrentChannelId, currentChannelId, modalIsOpened, setModalIsOpened}) {
-    const { t } = useTranslation();
+function DeleteChannelModal({ id, setCurrentChannelId, currentChannelId, modalIsOpened, setModalIsOpened }) {
+  const { t } = useTranslation()
 
-    const [removeChannel] = useRemoveChannelMutation();
-    const handleChannelRemove = () => {
-        removeChannel({id})
-        if (currentChannelId === id) 
-            {
-                setCurrentChannelId('1') 
-            }
+  const [removeChannel] = useRemoveChannelMutation()
+  const handleChannelRemove = () => {
+    removeChannel({ id })
+    if (currentChannelId === id) 
+    {
+      setCurrentChannelId('1') 
     }
+  }
   return (
     <div
       style={{ display: 'block', position: 'initial' }}
@@ -34,7 +34,7 @@ function DeleteChannelModal({id, setCurrentChannelId, currentChannelId, modalIsO
         </Modal.Footer>
       </Modal>
     </div>
-  );
+  )
 }
 
-export default DeleteChannelModal;
+export default DeleteChannelModal

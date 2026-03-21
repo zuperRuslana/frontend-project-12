@@ -13,7 +13,7 @@ export default defineConfig({
         target: 'ws://localhost:5001',
         ws: true,
         rewriteWsOrigin: true,
-      }
-    }
-  }
+      },
+    },
+  },
 })
