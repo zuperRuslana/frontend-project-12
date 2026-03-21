@@ -40,7 +40,7 @@ const handleRenameChannel = (newName)=> {
 }
 
    return (
-    <Modal show={true} onHide={closeModal}>
+    <Modal show={true} onHide={closeModal} animation={false} centered>
     <Formik
     initialValues={{ channelName: modalState.type ==='rename' ? modalState.channelName : "" }}
     validationSchema={channelSchema}
@@ -65,6 +65,7 @@ const handleRenameChannel = (newName)=> {
       }
     }
   }>
+    {({isSubmitting}) => (
       <Form>
       <Modal.Header closeButton>
       <Modal.Title>{modalState.type === 'add'? t('channels.addChannel') : t('channels.rename') } </Modal.Title> 
@@ -88,10 +89,11 @@ const handleRenameChannel = (newName)=> {
               </Field>
               </Modal.Body>
             <Modal.Footer>
-        <button type="submit" className="btn btn-primary">{t('channels.save')}</button>
+        <button type="submit" disabled={isSubmitting} className="btn btn-primary">{t('channels.save')}</button>
         <button onClick ={closeModal} type="button" className="btn btn-secondary" data-dismiss="modal">{t('channels.cancel')}</button>
       </Modal.Footer>
     </Form>
+    )}
     </Formik>
     </Modal>
    )

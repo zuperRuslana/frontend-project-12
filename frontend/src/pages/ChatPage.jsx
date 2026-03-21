@@ -15,9 +15,12 @@ const Chats = () => {
     const navigate = useNavigate()
 
     const userToken = useSelector((state) => state.auth.token)
-    if(userToken === null) {
-      navigate('/login')
-    }
+        useEffect(() => {
+      if (userToken === null) {
+        navigate('/login')
+      }
+    }, [userToken])
+    
 
 
 const channelCreated = () => {toast(t('toast.channelCreated'))}

@@ -28,7 +28,8 @@ export default {
         deleteChannel: 'Delete channel',
         areUsure: 'Are you sure?',
         name: 'Channel name',
-        save: 'Save'
+        save: 'Save',
+        manage: 'Channel manage'
        },
        messageStatus: {
         sending: 'Sending...',

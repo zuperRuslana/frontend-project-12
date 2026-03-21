@@ -18,10 +18,12 @@ console.log(modalIsOpened)
         <>
             <Dropdown as={ButtonGroup} id="dropdown-basic-button" className="w-100">
                 <Button variant="light" className="w-100 text-start" onClick={()=>setCurrentChannelId(id)}>{`# ${name}`}</Button>
-                <Dropdown.Toggle split variant="light" />
+                <Dropdown.Toggle split variant="light">
+                <span className="visually-hidden">{t("channels.manage")}</span>
+                </Dropdown.Toggle> 
                 <Dropdown.Menu>
-                <Dropdown.Item onClick={()=>openRenameModal({id, name})}>{t("channels.rename")}</Dropdown.Item>
                 <Dropdown.Item onClick={()=>setModalIsOpened(true)}>{t("channels.delete")}</Dropdown.Item>
+                <Dropdown.Item onClick={()=>openRenameModal({id, name})}>{t("channels.rename")}</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
             {modalIsOpened ?

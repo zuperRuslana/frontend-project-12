@@ -14,12 +14,15 @@
   "author": "",
   "type": "commonjs",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "dependencies": {
     "@hexlet/chat-server": "^2.0.4",
     "axios": "^1.13.4",
-    "bootstrap": "^5.3.8"
+    "bootstrap": "^5.3.8",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.5.0"
   }
 }

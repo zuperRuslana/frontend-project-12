@@ -39,7 +39,6 @@ const closeModal = () => {
     channelName: null
     }
 )}
-console.log('channels:', channels)
 
     return (
         <div className="col-4 col-md-2 border-end bg-light d-flex flex-column h-100 px-0">
@@ -48,12 +47,9 @@ console.log('channels:', channels)
                 <Button 
             onClick={openAddModal}
             size="small"
-            className="btn-light text-slate border border-slate p-0 px-2 border border-secondary justify-content-center"
->
-<span>+</span>
-
-</Button>
-                    {modalState.isOpen ? <ModalWindow modalState={modalState} closeModal={closeModal} setCurrentChannelId={setCurrentChannelId} /> : ''}
+            className="btn-light text-slate border border-slate p-0 px-2 border border-secondary justify-content-center">
+            <span>+</span>
+                </Button>
                     </div>
                     <ul className="nav flex-column nav-pills px-2 pb-2 overflow-auto flex-grow-1 mb-0">
                     {channels.map((channel)=>(
@@ -78,6 +74,7 @@ console.log('channels:', channels)
                     ))
                     }
                     </ul>
+                    {modalState.isOpen ? <ModalWindow modalState={modalState} closeModal={closeModal} setCurrentChannelId={setCurrentChannelId} /> : ''}
             </div>
     
      )

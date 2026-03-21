@@ -27,11 +27,12 @@ export default {
         cancel: 'Отменить',
         send: 'Отправить',
         delete: 'Удалить',
-        rename: 'Переиминовать',
+        rename: 'Переименовать',
         deleteChannel: 'Удалить канал',
         areUsure: 'Уверены?',
         name: 'Имя канала',
-        save: 'Сохранить'
+        save: 'Сохранить',
+        manage: 'Управление каналом'
        },
        messageStatus: {
         sending: 'Отправка...',
@@ -58,10 +59,8 @@ export default {
        },
        toast: {
         channelCreated: 'Канал создан',
-        channelDeleted: 'Канал удален',
-        channelRenamed: 'Канал изменен',
-
-
+        channelDeleted: 'Канал удалён',
+        channelRenamed: 'Канал переименован'
 
        }
     },
