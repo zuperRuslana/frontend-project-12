@@ -12,11 +12,11 @@ export const MessageForm = ({ currentChannelId }) => {
 
   const username = useSelector(state => state.auth.user)
 
-  const handleMessageText = (event) => {
+  const handleMessageText = event => {
     setNewMessage(event.target.value)
   }
 
-  const addSubmitMessageHandler = (event) => {
+  const addSubmitMessageHandler = event => {
     event.preventDefault()
     const message = {
       channelId: currentChannelId,

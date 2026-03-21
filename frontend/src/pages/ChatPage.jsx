@@ -40,23 +40,22 @@ const Chats = () => {
     socket.on('connect', () => {
       console.log(`Connected: ${socket.id}`)
     })
-    socket.on ('newMessage', (message) => {
+    socket.on ('newMessage', message => {
       console.log(message)
       refetchMessages()
     })
 
-    socket.on('removeChannel', (channelToDelete) => {
+    socket.on('removeChannel', channelToDelete => {
       console.log(channelToDelete)
       channelDeleted()
       refetchChannels()
     })
-    // subscribe rename channel
-    socket.on('renameChannel', (channelToChange) => {
+    socket.on('renameChannel', channelToChange => {
       console.log(channelToChange)
       channelRenamed()
       refetchChannels()
     })
-    socket.on('newChannel', (channelToChange) => {
+    socket.on('newChannel', channelToChange => {
       console.log(channelToChange)
       channelCreated()
       refetchChannels()
