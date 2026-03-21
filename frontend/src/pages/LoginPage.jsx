@@ -1,4 +1,3 @@
-import React from 'react'
 import { Field, Formik, Form, ErrorMessage } from 'formik'
 import { SignInSchema } from '../validate'
 import { useNavigate } from 'react-router-dom'
@@ -16,7 +15,6 @@ const Login = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-
   return (
 
     <div className="d-flex align-items-center justify-content-center vh-100">
@@ -29,7 +27,7 @@ const Login = () => {
             validationSchema={SignInSchema}
             onSubmit={async ({ username, password }) => {
               try {
-                const response= await axios.post('/api/v1/login', {
+                const response = await axios.post('/api/v1/login', {
                   username,
                   password,
                 })
@@ -39,30 +37,30 @@ const Login = () => {
                 console.log(response.data)
                 dispatch(setCredentials({ user: username, token: response.data.token }))
                 navigate('/')
-              } catch(error) {
-                if (error.response && error.response.status === 401){
+              }
+              catch (error) {
+                if (error.response && error.response.status === 401) {
                   setauthFailed(true)
                 }
               }
-            }
-            }
+            }}
           >
             {() => (
 
               <Form className="col-md-auto card-text">
                 <div className="form-floating mb-3">
-                  <Field name="username" >
+                  <Field name="username">
                     {({ field, meta }) => (
                       <>
                         <input
                           {...field}
                           type="text"
                           id="username"
-                          className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid': ''}` }
+                          className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid' : ''}`}
                         />
                         <label htmlFor="username">{t('forms.name')}</label>
-                        <ErrorMessage name='username'>
-                          {msg => <div placement="right" className="invalid-tooltip">{t(msg)}</div>}
+                        <ErrorMessage name="username">
+                          {msg => <div className="invalid-tooltip">{t(msg)}</div>}
                         </ErrorMessage>
 
                       </>
@@ -78,24 +76,34 @@ const Login = () => {
                           {...field}
                           type="password"
                           id="password"
-                          className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid': ''}` }
+                          className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid' : ''}`}
                         />
                         <label htmlFor="password">{t('forms.password')}</label>
-                        <ErrorMessage name='password'>
-                          {msg => <div placement="right" className="invalid-tooltip">{t(msg)}</div>}
+                        <ErrorMessage name="password">
+                          {msg => <div className="invalid-tooltip">{t(msg)}</div>}
                         </ErrorMessage>
                       </>
                     )}
                   </Field>
                 </div>
-                {authFailed ? <div className="text-danger mb-3"> {t('errors.error')}</div> : ''}
+                {authFailed
+                  ? (
+                      <div className="text-danger mb-3">
+                        {' '}
+                        {t('errors.error')}
+                      </div>
+                    )
+                  : ''}
 
                 <button className="btn btn-outline-secondary w-100 mb-3" type="submit">{t('forms.signin')}</button>
               </Form>
             )}
           </Formik>
           <div className="card-footer text-center bg-light py-3">
-            <span className="text-muted">{t('forms.newUser')} </span>
+            <span className="text-muted">
+              {t('forms.newUser')}
+              {' '}
+            </span>
             <a href="/signup" className="text-slate">{t('forms.register')}</a>
           </div>
 

@@ -8,7 +8,7 @@ const uiSlice = createSlice({
   name: 'ui',
   initialState,
   reducers: {
-    clickedChannel(state, { payload }){
+    clickedChannel(state, { payload }) {
       state.clickedChannel = payload
     },
   },

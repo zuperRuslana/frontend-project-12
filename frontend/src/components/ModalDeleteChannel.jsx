@@ -1,4 +1,3 @@
-import React from 'react'
 import { Modal } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { useRemoveChannelMutation } from '../slices/channelsApi'
@@ -29,10 +28,14 @@ function DeleteChannelModal({ id, setCurrentChannelId, currentChannelId, modalIs
 
         <Modal.Footer>
           <Button onClick={() => setModalIsOpened(false)} variant="secondary">{t('channels.cancel')}</Button>
-          <Button onClick={() => {
-            handleChannelRemove(id)
-          }}variant="danger"
-          >{t('channels.delete')}</Button>
+          <Button
+            onClick={() => {
+              handleChannelRemove(id)
+            }}
+            variant="danger"
+          >
+            {t('channels.delete')}
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>

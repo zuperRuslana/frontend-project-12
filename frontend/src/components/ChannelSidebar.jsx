@@ -4,7 +4,6 @@ import { ModalWindow } from './ModalChannels'
 import { ChannelDropdown } from './ChannelDropdown'
 import { useTranslation } from 'react-i18next'
 
-
 export const ChannelSidebar = ({ channels, setCurrentChannelId, currentChannelId }) => {
   const { t } = useTranslation()
 
@@ -58,23 +57,25 @@ export const ChannelSidebar = ({ channels, setCurrentChannelId, currentChannelId
 
           <li key={channel.id} className="nav-item w-100">
             {channel.removable
-              ? <ChannelDropdown
-                openRenameModal={openRenameModal}
-                id={channel.id}
-                name={channel.name}
-                setCurrentChannelId={setCurrentChannelId}
-                currentChannelId={currentChannelId}
-              />
-              : <button
-                onClick={() => setCurrentChannelId(channel.id)}
-                className="w-100 rounded-0 text-start text-truncate btn"
-                >
-                {`# ${channel.name}`}
-              </button>
-            }
+              ? (
+                  <ChannelDropdown
+                    openRenameModal={openRenameModal}
+                    id={channel.id}
+                    name={channel.name}
+                    setCurrentChannelId={setCurrentChannelId}
+                    currentChannelId={currentChannelId}
+                  />
+                )
+              : (
+                  <button
+                    onClick={() => setCurrentChannelId(channel.id)}
+                    className="w-100 rounded-0 text-start text-truncate btn"
+                  >
+                    {`# ${channel.name}`}
+                  </button>
+                )}
           </li>
-        ))
-        }
+        ))}
       </ul>
       {modalState.isOpen ? <ModalWindow modalState={modalState} closeModal={closeModal} setCurrentChannelId={setCurrentChannelId} /> : ''}
     </div>

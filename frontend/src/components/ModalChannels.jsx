@@ -1,4 +1,3 @@
-import React from 'react'
 import { channelSchema } from '../validate'
 import { Field, Formik, Form, ErrorMessage } from 'formik'
 import { useAddChannelMutation, useFetchChannelsQuery, useEditChannelMutation } from '../slices/channelsApi'
@@ -8,30 +7,28 @@ import textCensor from '../utils/leo_profanity'
 import { useDispatch } from 'react-redux'
 import { setChannelBackground } from '../slices/channelBackgroundsSlice'
 
-
 export const ModalWindow = ({ modalState, closeModal, setCurrentChannelId }) => {
   const { t } = useTranslation()
 
   const dispatch = useDispatch()
 
-
   const [addChannel] = useAddChannelMutation()
   const [editChannel] = useEditChannelMutation()
   const { data: channels } = useFetchChannelsQuery()
 
-  const uniqueCheck = channel => {
-    return channels?.some((obj => obj.name === channel))
+  const uniqueCheck = (channel) => {
+    return channels?.some(obj => obj.name === channel)
   }
 
-  const validateUnique = value => {
+  const validateUnique = (value) => {
     if (uniqueCheck(value)) return t('errors.unique')
     return undefined
   }
 
-  const handleAddChannel = channelName => {
+  const handleAddChannel = (channelName) => {
     return addChannel({ name: textCensor(channelName) })
   }
-  const handleRenameChannel = newName => {
+  const handleRenameChannel = (newName) => {
     return editChannel({
       id: modalState.channelId,
       name: textCensor(newName),
@@ -41,7 +38,7 @@ export const ModalWindow = ({ modalState, closeModal, setCurrentChannelId }) => 
   return (
     <Modal show={true} onHide={closeModal} animation={false} centered>
       <Formik
-        initialValues={{ channelName: modalState.type ==='rename' ? modalState.channelName : '' }}
+        initialValues={{ channelName: modalState.type === 'rename' ? modalState.channelName : '' }}
         validationSchema={channelSchema}
         onSubmit={async ({ channelName }) => {
           try {
@@ -53,20 +50,24 @@ export const ModalWindow = ({ modalState, closeModal, setCurrentChannelId }) => 
                 backgroundIndex,
               }))
               setCurrentChannelId(newChannel.id)
-            } else {
+            }
+            else {
               await handleRenameChannel(channelName).unwrap()
             }
             closeModal()
-          } catch(error){
+          }
+          catch (error) {
             console.log(error)
           }
-        }
-        }
+        }}
       >
         {({ isSubmitting }) => (
           <Form>
             <Modal.Header closeButton>
-              <Modal.Title>{modalState.type === 'add'? t('channels.addChannel') : t('channels.rename') } </Modal.Title>
+              <Modal.Title>
+                {modalState.type === 'add' ? t('channels.addChannel') : t('channels.rename') }
+                {' '}
+              </Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <Field name="channelName" validate={validateUnique}>
@@ -76,11 +77,16 @@ export const ModalWindow = ({ modalState, closeModal, setCurrentChannelId }) => 
                       {...field}
                       type="text"
                       id="channelName"
-                      className={`form-control ${(meta.touched && meta.error) ? 'is-invalid': ''}` }
+                      className={`form-control ${(meta.touched && meta.error) ? 'is-invalid' : ''}`}
                     />
                     <label className="visually-hidden" htmlFor="channelName">{t('channels.name')}</label>
-                    <ErrorMessage name='channelName'>
-                      {msg => <div placement="right" className="invalid-feedback">{t(msg)} </div>}
+                    <ErrorMessage name="channelName">
+                      {msg => (
+                        <div className="invalid-feedback">
+                          {t(msg)}
+                          {' '}
+                        </div>
+                      )}
                     </ErrorMessage>
                   </>
                 )}

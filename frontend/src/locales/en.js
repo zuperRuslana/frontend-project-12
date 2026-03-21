@@ -1,4 +1,3 @@
-
 export default {
   translation: {
     keyWithCount_one: '{{count}} message',
@@ -62,4 +61,3 @@ export default {
 
   },
 }
-

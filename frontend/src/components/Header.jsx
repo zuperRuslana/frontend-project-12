@@ -1,4 +1,3 @@
-import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
@@ -13,7 +12,7 @@ export const Header = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const loggedUser = useSelector(state => state.auth.user)
-  const handleLogOut =() => {
+  const handleLogOut = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('username')
     dispatch(logOut())

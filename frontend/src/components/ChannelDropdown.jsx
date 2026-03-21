@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { ButtonGroup } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
@@ -10,9 +10,7 @@ export const ChannelDropdown = ({ openRenameModal, id, name, setCurrentChannelId
 
   const [modalIsOpened, setModalIsOpened] = useState(false)
 
-
   console.log(modalIsOpened)
-
 
   return (
     <>
@@ -27,16 +25,17 @@ export const ChannelDropdown = ({ openRenameModal, id, name, setCurrentChannelId
         </Dropdown.Menu>
       </Dropdown>
       {modalIsOpened
-        ? <DeleteChannelModal
-          id={id}
-          setCurrentChannelId={setCurrentChannelId}
-          currentChannelId={currentChannelId}
-          setModalIsOpened={setModalIsOpened}
-          modalIsOpened={modalIsOpened}
-          />
+        ? (
+            <DeleteChannelModal
+              id={id}
+              setCurrentChannelId={setCurrentChannelId}
+              currentChannelId={currentChannelId}
+              setModalIsOpened={setModalIsOpened}
+              modalIsOpened={modalIsOpened}
+            />
+          )
         : ''}
 
     </>
   )
 }
-

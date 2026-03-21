@@ -1,7 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { baseQuery } from '../api/baseQuery'
 
-
 export const channelsApi = createApi({
   reducerPath: 'channels',
   baseQuery,
@@ -18,7 +17,7 @@ export const channelsApi = createApi({
         method: 'POST',
         body: channel,
       }),
-      //invalidatesTags: [{ type: 'Channel', id: 'ALL' }]
+      // invalidatesTags: [{ type: 'Channel', id: 'ALL' }]
     }),
     editChannel: builder.mutation({
       query: ({ id, ...body }) => ({
@@ -26,14 +25,14 @@ export const channelsApi = createApi({
         method: 'PATCH',
         body,
       }),
-      //invalidatesTags: [{ type: 'Channel', id: 'ALL' }]
+      // invalidatesTags: [{ type: 'Channel', id: 'ALL' }]
     }),
     removeChannel: builder.mutation({
       query: ({ id }) => ({
         url: `/channels/${id}`,
         method: 'DELETE',
       }),
-      //invalidatesTags: [{ type: 'Channel', id: 'ALL' }]
+      // invalidatesTags: [{ type: 'Channel', id: 'ALL' }]
     }),
   }),
 })
@@ -43,5 +42,3 @@ export const {
   useRemoveChannelMutation,
   useAddChannelMutation,
 } = channelsApi
-
-

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFetchChannelsQuery } from '../slices/channelsApi'
 import { useFetchMessagesQuery } from '../slices/messagesApi'
 import { ChannelSidebar } from '../components/ChannelSidebar'
@@ -8,7 +8,6 @@ import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
 
 const Chats = () => {
   const { t } = useTranslation()
@@ -21,7 +20,6 @@ const Chats = () => {
     }
   }, [userToken, navigate])
 
-
   const channelCreated = () => {
     toast(t('toast.channelCreated'))
   }
@@ -31,7 +29,6 @@ const Chats = () => {
   const channelDeleted = () => {
     toast(t('toast.channelDeleted'))
   }
-
 
   const { error: channelsError, isLoading: loadingChannels, data: channels, refetch: refetchChannels } = useFetchChannelsQuery()
   const { error: messagesError, isLoading: loadingMessages, data: messages, refetch: refetchMessages } = useFetchMessagesQuery()
@@ -43,23 +40,23 @@ const Chats = () => {
     socket.on('connect', () => {
       console.log(`Connected: ${socket.id}`)
     })
-    socket.on ('newMessage', message => {
+    socket.on ('newMessage', (message) => {
       console.log(message)
       refetchMessages()
     })
 
-    socket.on('removeChannel', channelToDelete => {
+    socket.on('removeChannel', (channelToDelete) => {
       console.log(channelToDelete)
       channelDeleted()
       refetchChannels()
     })
     // subscribe rename channel
-    socket.on('renameChannel', channelToChange => {
+    socket.on('renameChannel', (channelToChange) => {
       console.log(channelToChange)
       channelRenamed()
       refetchChannels()
     })
-    socket.on('newChannel', channelToChange => {
+    socket.on('newChannel', (channelToChange) => {
       console.log(channelToChange)
       channelCreated()
       refetchChannels()
@@ -73,11 +70,10 @@ const Chats = () => {
     }
   }, [])
 
-  if (loadingChannels || loadingMessages ) return <div>{t('chatsStatus.loading')}</div>
+  if (loadingChannels || loadingMessages) return <div>{t('chatsStatus.loading')}</div>
   if (channelsError || messagesError) return <div>{t('chatsStatus.loadingError')}</div>
 
   console.log('Chats render, channels:', channels)
-
 
   return (
     <div className="h-100">
