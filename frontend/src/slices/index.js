@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import authReducer from './authentificationSlice'
+import authReducer from './authSlice'
 import { channelsApi } from './channelsApi'
 import { messagesApi } from './messagesApi'
 import channelBackgroundsReducer from './channelBackgroundsSlice'

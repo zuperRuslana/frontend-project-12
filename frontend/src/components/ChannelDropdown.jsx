@@ -10,8 +10,6 @@ export const ChannelDropdown = ({ openRenameModal, id, name, setCurrentChannelId
 
   const [modalIsOpened, setModalIsOpened] = useState(false)
 
-  console.log(modalIsOpened)
-
   return (
     <>
       <Dropdown as={ButtonGroup} id="dropdown-basic-button" className="w-100">
@@ -26,14 +24,14 @@ export const ChannelDropdown = ({ openRenameModal, id, name, setCurrentChannelId
       </Dropdown>
       {modalIsOpened
         ? (
-            <DeleteChannelModal
-              id={id}
-              setCurrentChannelId={setCurrentChannelId}
-              currentChannelId={currentChannelId}
-              setModalIsOpened={setModalIsOpened}
-              modalIsOpened={modalIsOpened}
-            />
-          )
+          <DeleteChannelModal
+            id={id}
+            setCurrentChannelId={setCurrentChannelId}
+            currentChannelId={currentChannelId}
+            setModalIsOpened={setModalIsOpened}
+            modalIsOpened={modalIsOpened}
+          />
+        )
         : ''}
 
     </>

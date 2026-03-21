@@ -3,7 +3,7 @@ import { SignUpSchema } from '../validate'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setCredentials } from '../slices/authentificationSlice'
+import { setCredentials } from '../slices/authSlice'
 import axios from 'axios'
 import { useTranslation } from 'react-i18next'
 
@@ -33,11 +33,9 @@ const Signup = () => {
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('username', username)
                 setRegisterFailed(false)
-                console.log(response.data)
                 dispatch(setCredentials({ user: username, token: response.data.token }))
                 navigate('/')
-              }
-              catch (error) {
+              } catch (error) {
                 if (error.response && error.response.status === 409) {
                   setRegisterFailed(true)
                 }

@@ -3,7 +3,7 @@ import { SignInSchema } from '../validate'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setCredentials } from '../slices/authentificationSlice'
+import { setCredentials } from '../slices/authSlice'
 import axios from 'axios'
 import { useTranslation } from 'react-i18next'
 
@@ -34,11 +34,9 @@ const Login = () => {
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('username', username)
                 setauthFailed(false)
-                console.log(response.data)
                 dispatch(setCredentials({ user: username, token: response.data.token }))
                 navigate('/')
-              }
-              catch (error) {
+              } catch (error) {
                 if (error.response && error.response.status === 401) {
                   setauthFailed(true)
                 }
@@ -88,11 +86,11 @@ const Login = () => {
                 </div>
                 {authFailed
                   ? (
-                      <div className="text-danger mb-3">
-                        {' '}
-                        {t('errors.error')}
-                      </div>
-                    )
+                    <div className="text-danger mb-3">
+                      {' '}
+                      {t('errors.error')}
+                    </div>
+                  )
                   : ''}
 
                 <button className="btn btn-outline-secondary w-100 mb-3" type="submit">{t('forms.signin')}</button>

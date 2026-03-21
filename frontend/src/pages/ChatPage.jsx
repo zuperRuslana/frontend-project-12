@@ -38,25 +38,20 @@ const Chats = () => {
   const backgroundIndex = channelBackgrounds[currentChannelId] ?? 0
   useEffect(() => {
     socket.on('connect', () => {
-      console.log(`Connected: ${socket.id}`)
     })
-    socket.on ('newMessage', (message) => {
-      console.log(message)
+    socket.on ('newMessage', () => {
       refetchMessages()
     })
 
-    socket.on('removeChannel', (channelToDelete) => {
-      console.log(channelToDelete)
+    socket.on('removeChannel', () => {
       channelDeleted()
       refetchChannels()
     })
-    socket.on('renameChannel', (channelToChange) => {
-      console.log(channelToChange)
+    socket.on('renameChannel', () => {
       channelRenamed()
       refetchChannels()
     })
-    socket.on('newChannel', (channelToChange) => {
-      console.log(channelToChange)
+    socket.on('newChannel', () => {
       channelCreated()
       refetchChannels()
     })
@@ -71,8 +66,6 @@ const Chats = () => {
 
   if (loadingChannels || loadingMessages) return <div>{t('chatsStatus.loading')}</div>
   if (channelsError || messagesError) return <div>{t('chatsStatus.loadingError')}</div>
-
-  console.log('Chats render, channels:', channels)
 
   return (
     <div className="h-100">
