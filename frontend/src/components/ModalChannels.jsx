@@ -54,7 +54,7 @@ export const ModalWindow = ({ modalState, closeModal, setCurrentChannelId }) => 
               await handleRenameChannel(channelName).unwrap()
             }
             closeModal()
-          } catch(error) {
+          } catch (error) {
             rollbar.error(error)
           }
         }}
