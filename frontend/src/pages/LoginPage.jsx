@@ -37,7 +37,8 @@ const Login = () => {
                 console.log(response.data)
                 dispatch(setCredentials({ user: username, token: response.data.token }))
                 navigate('/')
-              } catch (error) {
+              }
+              catch (error) {
                 if (error.response && error.response.status === 401) {
                   setauthFailed(true)
                 }
@@ -87,11 +88,11 @@ const Login = () => {
                 </div>
                 {authFailed
                   ? (
-                    <div className="text-danger mb-3">
-                      {' '}
-                      {t('errors.error')}
-                    </div>
-                  )
+                      <div className="text-danger mb-3">
+                        {' '}
+                        {t('errors.error')}
+                      </div>
+                    )
                   : ''}
 
                 <button className="btn btn-outline-secondary w-100 mb-3" type="submit">{t('forms.signin')}</button>

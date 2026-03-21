@@ -36,7 +36,8 @@ const Signup = () => {
                 console.log(response.data)
                 dispatch(setCredentials({ user: username, token: response.data.token }))
                 navigate('/')
-              } catch (error) {
+              }
+              catch (error) {
                 if (error.response && error.response.status === 409) {
                   setRegisterFailed(true)
                 }
