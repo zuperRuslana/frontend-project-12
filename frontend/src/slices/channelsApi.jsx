@@ -2,18 +2,18 @@ import { createApi } from '@reduxjs/toolkit/query/react'
 import { baseQuery } from '../api/baseQuery'
 
 
-export const channelsApi  = createApi({
+export const channelsApi = createApi({
   reducerPath: 'channels',
   baseQuery,
   tagTypes: ['Channel'],
   endpoints: builder => ({
     fetchChannels: builder.query({
-      query: ()=> '/channels',
+      query: () => '/channels',
       providesTags: [{ type: 'Channel', id: 'ALL' }],
     }),
 
     addChannel: builder.mutation({
-      query: channel =>({
+      query: channel => ({
         url: '/channels',
         method: 'POST',
         body: channel,

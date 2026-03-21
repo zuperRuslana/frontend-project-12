@@ -17,8 +17,8 @@ const Login = () => {
   const dispatch = useDispatch()
 
 
-  return ( 
-    
+  return (
+
     <div className="d-flex align-items-center justify-content-center vh-100">
       <div className="card shadow-sm" style={{ width: '100%', maxWidth: '500px' }}>
         <div className="card-body p-4">
@@ -29,7 +29,7 @@ const Login = () => {
             validationSchema={SignInSchema}
             onSubmit={async ({ username, password }) => {
               try {
-                const response= await axios.post('/api/v1/login',{
+                const response= await axios.post('/api/v1/login', {
                   username,
                   password,
                 })
@@ -39,9 +39,8 @@ const Login = () => {
                 console.log(response.data)
                 dispatch(setCredentials({ user: username, token: response.data.token }))
                 navigate('/')
-              }
-              catch(error) {
-                if(error.response && error.response.status === 401){
+              } catch(error) {
+                if (error.response && error.response.status === 401){
                   setauthFailed(true)
                 }
               }
@@ -53,18 +52,19 @@ const Login = () => {
               <Form className="col-md-auto card-text">
                 <div className="form-floating mb-3">
                   <Field name="username" >
-                    {({ field, meta })=>(
+                    {({ field, meta }) => (
                       <>
-                        <input 
+                        <input
                           {...field}
-                          type="text" 
+                          type="text"
                           id="username"
-                          className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid': ''}` }/>
+                          className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid': ''}` }
+                        />
                         <label htmlFor="username">{t('forms.name')}</label>
                         <ErrorMessage name='username'>
-                          {(msg)=> <div placement="right" className="invalid-tooltip">{t(msg)}</div>}
-                        </ErrorMessage> 
-            
+                          {msg => <div placement="right" className="invalid-tooltip">{t(msg)}</div>}
+                        </ErrorMessage>
+
                       </>
                     )}
                   </Field>
@@ -72,18 +72,18 @@ const Login = () => {
 
                 <div className="form-floating mb-3">
                   <Field name="password">
-                    {({ field,meta })=> (
+                    {({ field, meta }) => (
                       <>
-                        <input 
+                        <input
                           {...field}
                           type="password"
                           id="password"
-                          className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid': ''}` } 
+                          className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid': ''}` }
                         />
                         <label htmlFor="password">{t('forms.password')}</label>
                         <ErrorMessage name='password'>
-                          {(msg)=> <div placement="right" className="invalid-tooltip">{t(msg)}</div>}
-                        </ErrorMessage>  
+                          {msg => <div placement="right" className="invalid-tooltip">{t(msg)}</div>}
+                        </ErrorMessage>
                       </>
                     )}
                   </Field>
@@ -102,7 +102,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  
+
   )
 }
 export default Login

@@ -1,18 +1,18 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { baseQuery } from '../api/baseQuery'
 
-export const messagesApi  = createApi({
+export const messagesApi = createApi({
   reducerPath: 'messages',
   baseQuery,
   tagTypes: ['Message'],
   endpoints: builder => ({
     fetchMessages: builder.query({
-      query: ()=> '/messages',
+      query: () => '/messages',
       providesTags: [{ type: 'Message', id: 'ALL' }],
     }),
 
     addMessage: builder.mutation({
-      query: (message) =>({
+      query: message => ({
         url: '/messages',
         method: 'POST',
         body: message,

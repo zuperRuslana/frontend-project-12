@@ -5,7 +5,7 @@ export default {
     keyWithCount_few: '{{count}} сообщения',
     keyWithCount_many: '{{count}} сообщений',
 
-    forms:{
+    forms: {
       signin: 'Войти',
       login: 'Имя пользователя',
       name: 'Ваш ник',

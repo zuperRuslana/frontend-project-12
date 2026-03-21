@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, Formik, Form, ErrorMessage } from 'formik'
-import { SignUpSchema }  from '../validate'
+import { SignUpSchema } from '../validate'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -18,18 +18,18 @@ const Signup = () => {
   const dispatch = useDispatch()
 
 
-  return ( 
-  
+  return (
+
     <div className="d-flex align-items-center justify-content-center vh-100">
       <div className="card shadow-sm" style={{ width: '100%', maxWidth: '500px' }}>
         <div className="card-body p-4">
           <h1 className="text-center mb-4">{t('forms.register')}</h1>
           <Formik
-            initialValues={{ username: '', password: '' , password2: '' }}
-            validationSchema={SignUpSchema} 
-            onSubmit={async ({ username, password, password2 }) => {
+            initialValues={{ username: '', password: '', password2: '' }}
+            validationSchema={SignUpSchema}
+            onSubmit={async ({ username, password }) => {
               try {
-                const response= await axios.post('/api/v1/signup',{
+                const response= await axios.post('/api/v1/signup', {
                   username,
                   password,
                 })
@@ -38,11 +38,9 @@ const Signup = () => {
                 setRegisterFailed(false)
                 console.log(response.data)
                 dispatch(setCredentials({ user: username, token: response.data.token }))
-                navigate('/') 
-        
-              }
-              catch(error) {
-                if(error.response && error.response.status === 409){
+                navigate('/')
+              } catch(error) {
+                if (error.response && error.response.status === 409){
                   setRegisterFailed(true)
                 }
               }
@@ -50,20 +48,21 @@ const Signup = () => {
             }
           >
             {() => (
-   
+
               <Form className="col-md-auto card-text">
                 <div className="form-floating mb-3">
                   <Field name="username" >
-                    {({ field, meta })=>(
+                    {({ field, meta }) => (
                       <>
-                        <input 
+                        <input
                           {...field}
-                          type="text" 
+                          type="text"
                           id="username"
-                          className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid': ''}` }/>
+                          className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid': ''}` }
+                        />
                         <label htmlFor="username">{t('forms.login')}</label>
                         <ErrorMessage name='username'>
-                          {(msg)=> <div placement="right" className="invalid-tooltip">{t(msg)} </div>} 
+                          {msg => <div placement="right" className="invalid-tooltip">{t(msg)} </div>}
                         </ErrorMessage>
                       </>
                     )}
@@ -71,36 +70,36 @@ const Signup = () => {
                 </div>
                 <div className="form-floating mb-3">
                   <Field name="password">
-                    {({ field,meta })=> (
+                    {({ field, meta }) => (
                       <>
-                        <input 
+                        <input
                           {...field}
                           type="password"
                           id="password"
-                          className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid': ''}` } 
+                          className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid': ''}` }
                         />
                         <label htmlFor="password">{t('forms.password')}</label>
                         <ErrorMessage name='password'>
-                          {(msg)=> <div placement="right" className="invalid-tooltip">{t(msg)} </div>} 
-                        </ErrorMessage> 
+                          {msg => <div placement="right" className="invalid-tooltip">{t(msg)} </div>}
+                        </ErrorMessage>
                       </>
                     )}
                   </Field>
                 </div>
                 <div className="form-floating mb-4">
                   <Field name="password2">
-                    {({ field,meta })=> (
+                    {({ field, meta }) => (
                       <>
-                        <input 
+                        <input
                           {...field}
                           type="password"
                           id="password2"
-                          className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid': ''}` } 
+                          className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid': ''}` }
                         />
                         <label htmlFor="password2">{t('forms.repeatPassword')}</label>
                         <ErrorMessage name='password2'>
-                          {(msg)=> <div placement="right" className="invalid-tooltip">{t(msg)} </div>} 
-                        </ErrorMessage> 
+                          {msg => <div placement="right" className="invalid-tooltip">{t(msg)} </div>}
+                        </ErrorMessage>
                       </>
                     )}
                   </Field>
@@ -109,7 +108,7 @@ const Signup = () => {
 
                 <button className="btn btn-outline-secondary w-100 mb-3" type="submit">{t('forms.signup')}</button>
               </Form>
-   
+
             )}
           </Formik>
         </div>

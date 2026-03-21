@@ -3,7 +3,7 @@ export default {
   translation: {
     keyWithCount_one: '{{count}} message',
     keyWithCount_other: '{{count}} messages',
-    forms:{
+    forms: {
       signin: 'Sign in',
       login: 'Username',
       name: 'Username',
@@ -62,4 +62,4 @@ export default {
 
   },
 }
-  
+

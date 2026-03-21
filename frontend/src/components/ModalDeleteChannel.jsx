@@ -10,9 +10,8 @@ function DeleteChannelModal({ id, setCurrentChannelId, currentChannelId, modalIs
   const [removeChannel] = useRemoveChannelMutation()
   const handleChannelRemove = () => {
     removeChannel({ id })
-    if (currentChannelId === id) 
-    {
-      setCurrentChannelId('1') 
+    if (currentChannelId === id) {
+      setCurrentChannelId('1')
     }
   }
   return (
@@ -20,7 +19,7 @@ function DeleteChannelModal({ id, setCurrentChannelId, currentChannelId, modalIs
       style={{ display: 'block', position: 'initial' }}
     >
       <Modal show={modalIsOpened}>
-        <Modal.Header closeButton onHide={()=>setModalIsOpened(false)}>
+        <Modal.Header closeButton onHide={() => setModalIsOpened(false)}>
           <Modal.Title>{t('channels.deleteChannel')}</Modal.Title>
         </Modal.Header>
 
@@ -29,8 +28,11 @@ function DeleteChannelModal({ id, setCurrentChannelId, currentChannelId, modalIs
         </Modal.Body>
 
         <Modal.Footer>
-          <Button onClick={()=>setModalIsOpened(false)} variant="secondary">{t('channels.cancel')}</Button>
-          <Button onClick={()=> {handleChannelRemove(id)}}variant="danger">{t('channels.delete')}</Button>
+          <Button onClick={() => setModalIsOpened(false)} variant="secondary">{t('channels.cancel')}</Button>
+          <Button onClick={() => {
+            handleChannelRemove(id)
+          }}variant="danger"
+          >{t('channels.delete')}</Button>
         </Modal.Footer>
       </Modal>
     </div>

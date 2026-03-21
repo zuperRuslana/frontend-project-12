@@ -6,7 +6,7 @@ socket.on('connect', () => {
   console.log('Socket connected:', socket.id)
 })
 
-socket.on('connect_error', (error) => {
+socket.on('connect_error', error => {
   console.log('Socket error:', error)
 })
 

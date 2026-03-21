@@ -7,7 +7,7 @@ const SignInSchema = Yup.object().shape({
     .required('validation.required'),
 
 })
- 
+
 const SignUpSchema = Yup.object().shape({
   username: Yup.string()
     .min(3, 'validation.short')
@@ -18,7 +18,7 @@ const SignUpSchema = Yup.object().shape({
     .required('validation.required'),
   password2: Yup.string()
     .required('validation.required')
-    .oneOf([Yup.ref('password'),null], 'validation.must_be_same'),
+    .oneOf([Yup.ref('password'), null], 'validation.must_be_same'),
 })
 
 const channelSchema = Yup.object().shape({

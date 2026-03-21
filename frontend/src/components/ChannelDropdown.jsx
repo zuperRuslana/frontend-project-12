@@ -5,35 +5,36 @@ import { Button } from 'react-bootstrap'
 import DeleteChannelModal from './ModalDeleteChannel'
 import { useTranslation } from 'react-i18next'
 
-export const ChannelDropdown = ({ openRenameModal, id, name, setCurrentChannelId, currentChannelId })=>{
+export const ChannelDropdown = ({ openRenameModal, id, name, setCurrentChannelId, currentChannelId }) => {
   const { t } = useTranslation()
 
   const [modalIsOpened, setModalIsOpened] = useState(false)
 
 
   console.log(modalIsOpened)
-  
-    
-  return(
+
+
+  return (
     <>
       <Dropdown as={ButtonGroup} id="dropdown-basic-button" className="w-100">
-        <Button variant="light" className="w-100 text-start" onClick={()=>setCurrentChannelId(id)}>{`# ${name}`}</Button>
+        <Button variant="light" className="w-100 text-start" onClick={() => setCurrentChannelId(id)}>{`# ${name}`}</Button>
         <Dropdown.Toggle split variant="light">
           <span className="visually-hidden">{t('channels.manage')}</span>
-        </Dropdown.Toggle> 
+        </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item onClick={()=>setModalIsOpened(true)}>{t('channels.delete')}</Dropdown.Item>
-          <Dropdown.Item onClick={()=>openRenameModal({ id, name })}>{t('channels.rename')}</Dropdown.Item>
+          <Dropdown.Item onClick={() => setModalIsOpened(true)}>{t('channels.delete')}</Dropdown.Item>
+          <Dropdown.Item onClick={() => openRenameModal({ id, name })}>{t('channels.rename')}</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-      {modalIsOpened ?
-        <DeleteChannelModal 
-          id ={id} 
-          setCurrentChannelId={setCurrentChannelId} 
-          currentChannelId={currentChannelId} 
+      {modalIsOpened
+        ? <DeleteChannelModal
+          id={id}
+          setCurrentChannelId={setCurrentChannelId}
+          currentChannelId={currentChannelId}
           setModalIsOpened={setModalIsOpened}
-          modalIsOpened={modalIsOpened}/>
-        : ''} 
+          modalIsOpened={modalIsOpened}
+          />
+        : ''}
 
     </>
   )
