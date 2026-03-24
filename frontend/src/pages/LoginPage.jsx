@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { setCredentials } from '../slices/authSlice'
 import axios from 'axios'
 import { useTranslation } from 'react-i18next'
+import strawberryBg from '../design/strawberry-bg.svg'
 
 const Login = () => {
   const { t } = useTranslation()
@@ -17,10 +18,10 @@ const Login = () => {
 
   return (
 
-    <div className="d-flex align-items-center justify-content-center vh-100">
-      <div className="card shadow-sm" style={{ width: '100%', maxWidth: '500px' }}>
+    <div className="d-flex align-items-center justify-content-center vh-100" style={{ backgroundImage: `url(${strawberryBg})`, backgroundSize: '400px', backgroundRepeat: 'repeat' }}>
+      <div className="card shadow" style={{ width: '100%', maxWidth: '420px', backgroundColor: 'rgba(255, 255, 255, 0.82)', backdropFilter: 'blur(2px)' }}>
         <div className="card-body p-4">
-          <h1 className="text-center mb-4">{t('forms.signin')}</h1>
+          <h1 className="text-center mb-4 fs-3 fw-bold text-slate">{t('forms.signin')}</h1>
 
           <Formik
             initialValues={{ username: '', password: '' }}
@@ -36,7 +37,8 @@ const Login = () => {
                 setauthFailed(false)
                 dispatch(setCredentials({ user: username, token: response.data.token }))
                 navigate('/')
-              } catch (error) {
+              }
+              catch (error) {
                 if (error.response && error.response.status === 401) {
                   setauthFailed(true)
                 }
@@ -86,25 +88,24 @@ const Login = () => {
                 </div>
                 {authFailed
                   ? (
-                    <div className="text-danger mb-3">
-                      {' '}
-                      {t('errors.error')}
-                    </div>
-                  )
+                      <div className="text-danger mb-3">
+                        {' '}
+                        {t('errors.error')}
+                      </div>
+                    )
                   : ''}
 
                 <button className="btn btn-outline-secondary w-100 mb-3" type="submit">{t('forms.signin')}</button>
               </Form>
             )}
           </Formik>
-          <div className="card-footer text-center bg-light py-3">
-            <span className="text-muted">
-              {t('forms.newUser')}
-              {' '}
-            </span>
-            <a href="/signup" className="text-slate">{t('forms.register')}</a>
-          </div>
-
+        </div>
+        <div className="card-footer text-center bg-light py-3">
+          <span className="text-muted">
+            {t('forms.newUser')}
+            {' '}
+          </span>
+          <a href="/signup" className="text-slate fw-medium">{t('forms.register')}</a>
         </div>
       </div>
     </div>

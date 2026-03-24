@@ -16,19 +16,19 @@ export const ModalWindow = ({ modalState, closeModal, setCurrentChannelId }) => 
   const [editChannel] = useEditChannelMutation()
   const { data: channels } = useFetchChannelsQuery()
 
-  const uniqueCheck = channel => {
+  const uniqueCheck = (channel) => {
     return channels?.some(obj => obj.name === channel)
   }
 
-  const validateUnique = value => {
+  const validateUnique = (value) => {
     if (uniqueCheck(value)) return t('errors.unique')
     return undefined
   }
 
-  const handleAddChannel = channelName => {
+  const handleAddChannel = (channelName) => {
     return addChannel({ name: textCensor(channelName) })
   }
-  const handleRenameChannel = newName => {
+  const handleRenameChannel = (newName) => {
     return editChannel({
       id: modalState.channelId,
       name: textCensor(newName),
@@ -50,11 +50,13 @@ export const ModalWindow = ({ modalState, closeModal, setCurrentChannelId }) => 
                 backgroundIndex,
               }))
               setCurrentChannelId(newChannel.id)
-            } else {
+            }
+            else {
               await handleRenameChannel(channelName).unwrap()
             }
             closeModal()
-          } catch (error) {
+          }
+          catch (error) {
             rollbar.error(error)
           }
         }}

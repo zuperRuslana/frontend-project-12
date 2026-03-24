@@ -1,5 +1,6 @@
 import { MessageForm } from './MessageForm'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import strawberryBg from '../design/strawberry-bg.svg'
 import pineappleBg from '../design/pineapple-bg.svg'
 import grapeBg from '../design/grape-bg.svg'
@@ -15,6 +16,7 @@ const backgrounds = [
 ]
 export const MessageArea = ({ messages, channels, currentChannelId, backgroundIndex }) => {
   const { t } = useTranslation()
+  const currentUser = useSelector(state => state.auth.user)
 
   const currentChannel = channels.find(c => String(c.id) === String(currentChannelId))
   const currentMessages = messages.filter(message => message.channelId === currentChannelId)
@@ -43,14 +45,31 @@ export const MessageArea = ({ messages, channels, currentChannelId, backgroundIn
             {' '}
           </span>
         </div>
-        <div id="messages-box" className="chat-messages overflow-auto px-5">
-          {currentMessages.map(msg => (
-            <div key={msg.id} className="text-break mb-2">
-              <b>{msg.username}</b>
-              :
-              {msg.body}
-            </div>
-          ))}
+        <div id="messages-box" className="chat-messages overflow-auto px-4 pb-2">
+          {currentMessages.map((msg) => {
+            const isOwn = msg.username === currentUser
+            return (
+              <div key={msg.id} className={`d-flex mb-2 ${isOwn ? 'justify-content-end' : 'justify-content-start'}`}>
+                <div
+                  className="text-break px-3 py-2"
+                  style={{
+                    maxWidth: '70%',
+                    borderRadius: isOwn ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
+                    backgroundColor: isOwn ? 'rgba(180, 255, 210, 0.88)' : 'rgba(255, 255, 255, 0.82)',
+                    backdropFilter: 'blur(2px)',
+                    boxShadow: '0 1px 4px rgba(0,0,0,0.10)',
+                  }}
+                >
+                  {!isOwn && (
+                    <div style={{ fontSize: '0.72rem', fontWeight: 700, marginBottom: '2px', color: '#7c4dff' }}>
+                      {msg.username}
+                    </div>
+                  )}
+                  <span style={{ fontSize: '0.95rem' }}>{msg.body}</span>
+                </div>
+              </div>
+            )
+          })}
         </div>
         <MessageForm currentChannelId={currentChannelId} />
 

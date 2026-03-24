@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { setCredentials } from '../slices/authSlice'
 import axios from 'axios'
 import { useTranslation } from 'react-i18next'
+import pineappleBg from '../design/pineapple-bg.svg'
 
 const Signup = () => {
   const { t } = useTranslation()
@@ -17,8 +18,8 @@ const Signup = () => {
 
   return (
 
-    <div className="d-flex align-items-center justify-content-center vh-100">
-      <div className="card shadow-sm" style={{ width: '100%', maxWidth: '500px' }}>
+    <div className="d-flex align-items-center justify-content-center vh-100" style={{ backgroundImage: `url(${pineappleBg})`, backgroundSize: '400px', backgroundRepeat: 'repeat' }}>
+      <div className="card shadow-sm" style={{ width: '100%', maxWidth: '500px', backgroundColor: 'rgba(255, 255, 255, 0.82)', backdropFilter: 'blur(2px)' }}>
         <div className="card-body p-4">
           <h1 className="text-center mb-4">{t('forms.register')}</h1>
           <Formik
@@ -35,7 +36,8 @@ const Signup = () => {
                 setRegisterFailed(false)
                 dispatch(setCredentials({ user: username, token: response.data.token }))
                 navigate('/')
-              } catch (error) {
+              }
+              catch (error) {
                 if (error.response && error.response.status === 409) {
                   setRegisterFailed(true)
                 }

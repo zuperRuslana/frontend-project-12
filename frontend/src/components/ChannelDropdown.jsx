@@ -24,14 +24,14 @@ export const ChannelDropdown = ({ openRenameModal, id, name, setCurrentChannelId
       </Dropdown>
       {modalIsOpened
         ? (
-          <DeleteChannelModal
-            id={id}
-            setCurrentChannelId={setCurrentChannelId}
-            currentChannelId={currentChannelId}
-            setModalIsOpened={setModalIsOpened}
-            modalIsOpened={modalIsOpened}
-          />
-        )
+            <DeleteChannelModal
+              id={id}
+              setCurrentChannelId={setCurrentChannelId}
+              currentChannelId={currentChannelId}
+              setModalIsOpened={setModalIsOpened}
+              modalIsOpened={modalIsOpened}
+            />
+          )
         : ''}
 
     </>

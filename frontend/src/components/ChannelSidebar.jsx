@@ -58,22 +58,22 @@ export const ChannelSidebar = ({ channels, setCurrentChannelId, currentChannelId
           <li key={channel.id} className="nav-item w-100">
             {channel.removable
               ? (
-                <ChannelDropdown
-                  openRenameModal={openRenameModal}
-                  id={channel.id}
-                  name={channel.name}
-                  setCurrentChannelId={setCurrentChannelId}
-                  currentChannelId={currentChannelId}
-                />
-              )
+                  <ChannelDropdown
+                    openRenameModal={openRenameModal}
+                    id={channel.id}
+                    name={channel.name}
+                    setCurrentChannelId={setCurrentChannelId}
+                    currentChannelId={currentChannelId}
+                  />
+                )
               : (
-                <button
-                  onClick={() => setCurrentChannelId(channel.id)}
-                  className="w-100 rounded-0 text-start text-truncate btn"
-                >
-                  {`# ${channel.name}`}
-                </button>
-              )}
+                  <button
+                    onClick={() => setCurrentChannelId(channel.id)}
+                    className="w-100 rounded-0 text-start text-truncate btn"
+                  >
+                    {`# ${channel.name}`}
+                  </button>
+                )}
           </li>
         ))}
       </ul>

@@ -21,7 +21,7 @@ export const Header = () => {
   return (
     <Navbar className="shadow-sm navbar-dark bg-slate">
       <Container>
-        <Navbar.Brand href="/">Hexlet Chat</Navbar.Brand>
+        <Navbar.Brand href="/">Strawbie</Navbar.Brand>
         {loggedUser && <Button onClick={handleLogOut} className="btn-light text-slate">{t('chats.signout')}</Button>}
       </Container>
     </Navbar>
