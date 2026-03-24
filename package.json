@@ -14,7 +14,9 @@
   "author": "",
   "type": "commonjs",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "make start"
+  },
   "dependencies": {
     "@hexlet/chat-server": "^2.0.4",
     "axios": "^1.13.4",

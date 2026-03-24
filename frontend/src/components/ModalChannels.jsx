@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next'
 import textCensor from '../utils/leo_profanity'
 import { useDispatch } from 'react-redux'
 import { setChannelBackground } from '../slices/channelBackgroundsSlice'
-import rollbar from '../utils/rollbar'
 export const ModalWindow = ({ modalState, closeModal, setCurrentChannelId }) => {
   const { t } = useTranslation()
 
