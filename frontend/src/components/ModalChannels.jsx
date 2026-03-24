@@ -57,7 +57,7 @@ export const ModalWindow = ({ modalState, closeModal, setCurrentChannelId }) => 
             closeModal()
           }
           catch (error) {
-            rollbar.error(error)
+            console.error(error)
           }
         }}
       >
