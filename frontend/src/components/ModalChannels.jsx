@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import textCensor from '../utils/leo_profanity'
 import { useDispatch } from 'react-redux'
 import { setChannelBackground } from '../slices/channelBackgroundsSlice'
+
 export const ModalWindow = ({ modalState, closeModal, setCurrentChannelId }) => {
   const { t } = useTranslation()
 
@@ -33,33 +34,31 @@ export const ModalWindow = ({ modalState, closeModal, setCurrentChannelId }) => 
       name: textCensor(newName),
     })
   }
+  const handleSubmit = async ({ channelName }) => {
+    try {
+      if (modalState.type === 'add') {
+        const backgroundIndex = (channels?.length ?? 0) % 5
+        const newChannel = await handleAddChannel(channelName).unwrap()
+        dispatch(setChannelBackground({
+          channelId: newChannel.id,
+          backgroundIndex,
+        }))
+        setCurrentChannelId(newChannel.id)
+      } else {
+        await handleRenameChannel(channelName).unwrap()
+      }
+      closeModal()
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <Modal show={true} onHide={closeModal} animation={false} centered>
       <Formik
         initialValues={{ channelName: modalState.type === 'rename' ? modalState.channelName : '' }}
         validationSchema={channelSchema}
-        onSubmit={async ({ channelName }) => {
-          try {
-            if (modalState.type === 'add') {
-              const backgroundIndex = (channels?.length ?? 0) % 5
-              const newChannel = await handleAddChannel(channelName).unwrap()
-              dispatch(setChannelBackground({
-                channelId: newChannel.id,
-                backgroundIndex,
-              }))
-              setCurrentChannelId(newChannel.id)
-            }
-            else {
-              await handleRenameChannel(channelName).unwrap()
-            }
-            closeModal()
-          }
-          catch (error) {
-            console.error(error)
-          }
-        }}
-      >
+        onSubmit={handleSubmit}>
         {({ isSubmitting }) => (
           <Form>
             <Modal.Header closeButton>

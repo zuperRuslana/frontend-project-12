@@ -5,7 +5,7 @@ import Chats from './pages/ChatPage'
 import Signup from './pages/SignUpPage'
 import { Header } from './components/Header'
 import { I18nextProvider } from 'react-i18next'
-import i18next from '../init'
+import i18next from './init'
 import { ToastContainer } from 'react-toastify'
 
 function App() {

@@ -30,7 +30,6 @@ coverage/
 playwright-report/
 test-results/
 blob-report/
-test-data/
 
 # Editor directories and files
 .vscode/*

@@ -16,6 +16,25 @@ const Signup = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const handleSubmit = async ({ username, password }) => {
+    try {
+      const response = await axios.post('/api/v1/signup', {
+        username,
+        password,
+      })
+      localStorage.setItem('token', response.data.token)
+      localStorage.setItem('username', username)
+      setRegisterFailed(false)
+      dispatch(setCredentials({ user: username, token: response.data.token }))
+      navigate('/')
+    }
+    catch (error) {
+      if (error.response && error.response.status === 409) {
+        setRegisterFailed(true)
+      }
+    }
+  }
+
   return (
 
     <div className="d-flex align-items-center justify-content-center vh-100" style={{ backgroundImage: `url(${pineappleBg})`, backgroundSize: '400px', backgroundRepeat: 'repeat' }}>
@@ -25,25 +44,7 @@ const Signup = () => {
           <Formik
             initialValues={{ username: '', password: '', password2: '' }}
             validationSchema={SignUpSchema}
-            onSubmit={async ({ username, password }) => {
-              try {
-                const response = await axios.post('/api/v1/signup', {
-                  username,
-                  password,
-                })
-                localStorage.setItem('token', response.data.token)
-                localStorage.setItem('username', username)
-                setRegisterFailed(false)
-                dispatch(setCredentials({ user: username, token: response.data.token }))
-                navigate('/')
-              }
-              catch (error) {
-                if (error.response && error.response.status === 409) {
-                  setRegisterFailed(true)
-                }
-              }
-            }}
-          >
+            onSubmit={handleSubmit}>
             {() => (
 
               <Form className="col-md-auto card-text">

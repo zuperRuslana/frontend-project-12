@@ -16,6 +16,25 @@ const Login = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const loginUser = async ({ username, password }) => {
+    try {
+      const response = await axios.post('/api/v1/login', {
+        username,
+        password,
+      })
+      localStorage.setItem('token', response.data.token)
+      localStorage.setItem('username', username)
+      setauthFailed(false)
+      dispatch(setCredentials({ user: username, token: response.data.token }))
+      navigate('/')
+    }
+    catch (error) {
+      if (error.response && error.response.status === 401) {
+        setauthFailed(true)
+      }
+    }
+  }
+
   return (
 
     <div className="d-flex align-items-center justify-content-center vh-100" style={{ backgroundImage: `url(${strawberryBg})`, backgroundSize: '400px', backgroundRepeat: 'repeat' }}>
@@ -26,25 +45,7 @@ const Login = () => {
           <Formik
             initialValues={{ username: '', password: '' }}
             validationSchema={SignInSchema}
-            onSubmit={async ({ username, password }) => {
-              try {
-                const response = await axios.post('/api/v1/login', {
-                  username,
-                  password,
-                })
-                localStorage.setItem('token', response.data.token)
-                localStorage.setItem('username', username)
-                setauthFailed(false)
-                dispatch(setCredentials({ user: username, token: response.data.token }))
-                navigate('/')
-              }
-              catch (error) {
-                if (error.response && error.response.status === 401) {
-                  setauthFailed(true)
-                }
-              }
-            }}
-          >
+            onSubmit={loginUser}>
             {() => (
 
               <Form className="col-md-auto card-text">
