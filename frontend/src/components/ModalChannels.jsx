@@ -44,12 +44,12 @@ export const ModalWindow = ({ modalState, closeModal, setCurrentChannelId }) => 
           backgroundIndex,
         }))
         setCurrentChannelId(newChannel.id)
-      } 
+      }
       else {
         await handleRenameChannel(channelName).unwrap()
       }
       closeModal()
-    } 
+    }
     catch (error) {
       console.error(error)
     }
