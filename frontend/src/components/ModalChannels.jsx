@@ -44,11 +44,13 @@ export const ModalWindow = ({ modalState, closeModal, setCurrentChannelId }) => 
           backgroundIndex,
         }))
         setCurrentChannelId(newChannel.id)
-      } else {
+      } 
+      else {
         await handleRenameChannel(channelName).unwrap()
       }
       closeModal()
-    } catch (error) {
+    } 
+    catch (error) {
       console.error(error)
     }
   }
@@ -58,7 +60,8 @@ export const ModalWindow = ({ modalState, closeModal, setCurrentChannelId }) => 
       <Formik
         initialValues={{ channelName: modalState.type === 'rename' ? modalState.channelName : '' }}
         validationSchema={channelSchema}
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+      >
         {({ isSubmitting }) => (
           <Form>
             <Modal.Header closeButton>

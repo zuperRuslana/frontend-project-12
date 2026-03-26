@@ -44,7 +44,8 @@ const Signup = () => {
           <Formik
             initialValues={{ username: '', password: '', password2: '' }}
             validationSchema={SignUpSchema}
-            onSubmit={handleSubmit}>
+            onSubmit={handleSubmit}
+          >
             {() => (
 
               <Form className="col-md-auto card-text">
