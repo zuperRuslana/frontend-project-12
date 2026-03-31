@@ -20,12 +20,12 @@ export const MessageArea = ({ messages, channels, currentChannelId, backgroundIn
   const currentUser = useSelector(state => state.auth.user)
 
   let ref = useRef(null)
-  
+
   const currentChannel = channels.find(c => String(c.id) === String(currentChannelId))
   const currentMessages = messages.filter(message => message.channelId === currentChannelId)
   useEffect(() => {
     ref.current?.scrollIntoView()
-  },[currentMessages])
+  }, [currentMessages])
 
   const bgUrl = backgrounds[backgroundIndex ?? 0]
 

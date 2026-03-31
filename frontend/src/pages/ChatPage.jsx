@@ -68,30 +68,29 @@ const Chats = () => {
   if (channelsError || messagesError) return <div>{t('chatsStatus.loadingError')}</div>
 
   return (
-      <div className="d-flex flex-column h-100 overflow-hidden">
-        <div className="flex-grow-1 min-vh-0">
-          <div className="container h-100">
-            <div className="card h-100 border-0 shadow overflow-hidden">
-              <div className="row g-0 h-100">
+    <div className="d-flex flex-column h-100 overflow-hidden">
+      <div className="flex-grow-1 min-vh-0">
+        <div className="container h-100">
+          <div className="card h-100 border-0 shadow overflow-hidden">
+            <div className="row g-0 h-100">
 
-                <ChannelSidebar
-                  channels={channels}
-                  currentChannelId={currentChannelId}
-                  setCurrentChannelId={setCurrentChannelId}
-                />
+              <ChannelSidebar
+                channels={channels}
+                currentChannelId={currentChannelId}
+                setCurrentChannelId={setCurrentChannelId}
+              />
 
-                <MessageArea
-                  channels={channels}
-                  messages={messages}
-                  currentChannelId={currentChannelId}
-                  backgroundIndex={backgroundIndex}
-
-                />
-              </div>
+              <MessageArea
+                channels={channels}
+                messages={messages}
+                currentChannelId={currentChannelId}
+                backgroundIndex={backgroundIndex}
+              />
             </div>
           </div>
         </div>
       </div>
+    </div>
   )
 }
 

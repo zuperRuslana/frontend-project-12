@@ -14,13 +14,13 @@ function App() {
       <I18nextProvider i18n={i18next}>
         <ToastContainer theme="dark" />
         <div className="d-flex flex-column vh-100">
-        <Header />
-        <Routes>
-          <Route path="/" element={<Chats />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Chats />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </div>
       </I18nextProvider>
     </BrowserRouter>
