@@ -40,6 +40,7 @@ export const MessageForm = ({ currentChannelId }) => {
         <div className="input-group has-validation">
           <input
             name="body"
+            autoComplete="off"
             aria-label={t('chats.newMessage')}
             placeholder={t('chats.sendMessage')}
             className="border-0 p-0 ps-2 form-control"

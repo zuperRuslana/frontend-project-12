@@ -6,6 +6,7 @@ import pineappleBg from '../design/pineapple-bg.svg'
 import grapeBg from '../design/grape-bg.svg'
 import blueberryBg from '../design/blueberry-bg.svg'
 import orangeBg from '../design/orange-bg.svg'
+import { useEffect, useRef } from 'react'
 
 const backgrounds = [
   strawberryBg,
@@ -18,8 +19,14 @@ export const MessageArea = ({ messages, channels, currentChannelId, backgroundIn
   const { t } = useTranslation()
   const currentUser = useSelector(state => state.auth.user)
 
+  let ref = useRef(null)
+  
   const currentChannel = channels.find(c => String(c.id) === String(currentChannelId))
   const currentMessages = messages.filter(message => message.channelId === currentChannelId)
+  useEffect(() => {
+    ref.current?.scrollIntoView()
+  },[currentMessages])
+
   const bgUrl = backgrounds[backgroundIndex ?? 0]
 
   return (
@@ -70,6 +77,7 @@ export const MessageArea = ({ messages, channels, currentChannelId, backgroundIn
               </div>
             )
           })}
+          <div ref={ref} />
         </div>
         <MessageForm currentChannelId={currentChannelId} />
 

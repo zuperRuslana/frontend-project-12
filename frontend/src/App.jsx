@@ -13,6 +13,7 @@ function App() {
     <BrowserRouter>
       <I18nextProvider i18n={i18next}>
         <ToastContainer theme="dark" />
+        <div className="d-flex flex-column vh-100">
         <Header />
         <Routes>
           <Route path="/" element={<Chats />} />
@@ -20,6 +21,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </div>
       </I18nextProvider>
     </BrowserRouter>
   )

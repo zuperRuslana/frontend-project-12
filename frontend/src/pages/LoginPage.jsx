@@ -58,6 +58,7 @@ const Login = () => {
                           {...field}
                           type="text"
                           id="username"
+                          autoComplete="off"
                           className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid' : ''}`}
                         />
                         <label htmlFor="username">{t('forms.name')}</label>
@@ -78,6 +79,7 @@ const Login = () => {
                           {...field}
                           type="password"
                           id="password"
+                          autoComplete="off"
                           className={`form-control ${(meta.touched && meta.error) || authFailed ? 'is-invalid' : ''}`}
                         />
                         <label htmlFor="password">{t('forms.password')}</label>

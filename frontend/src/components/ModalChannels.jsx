@@ -78,6 +78,7 @@ export const ModalWindow = ({ modalState, closeModal, setCurrentChannelId }) => 
                       {...field}
                       type="text"
                       id="channelName"
+                      autoComplete="off"
                       className={`form-control ${(meta.touched && meta.error) ? 'is-invalid' : ''}`}
                     />
                     <label className="visually-hidden" htmlFor="channelName">{t('channels.name')}</label>

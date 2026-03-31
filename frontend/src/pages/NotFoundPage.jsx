@@ -13,7 +13,7 @@ const NotFound = () => {
       </p>
       <Link to="/">
         {' '}
-        {t('errors.go_to_chat')}
+        {t('errors.go_to_chats')}
       </Link>
     </div>
   )

@@ -68,9 +68,8 @@ const Chats = () => {
   if (channelsError || messagesError) return <div>{t('chatsStatus.loadingError')}</div>
 
   return (
-    <div className="h-100">
-      <div className="d-flex flex-column vh-100">
-        <div className="flex-grow-1 min-vh-0 py-4">
+      <div className="d-flex flex-column h-100 overflow-hidden">
+        <div className="flex-grow-1 min-vh-0">
           <div className="container h-100">
             <div className="card h-100 border-0 shadow overflow-hidden">
               <div className="row g-0 h-100">
@@ -93,8 +92,6 @@ const Chats = () => {
           </div>
         </div>
       </div>
-    </div>
-
   )
 }
 

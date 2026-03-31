@@ -57,6 +57,7 @@ const Signup = () => {
                           {...field}
                           type="text"
                           id="username"
+                          autoComplete="off"
                           className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid' : ''}`}
                         />
                         <label htmlFor="username">{t('forms.login')}</label>
@@ -80,6 +81,7 @@ const Signup = () => {
                           {...field}
                           type="password"
                           id="password"
+                          autoComplete="off"
                           className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid' : ''}`}
                         />
                         <label htmlFor="password">{t('forms.password')}</label>
@@ -103,6 +105,7 @@ const Signup = () => {
                           {...field}
                           type="password"
                           id="password2"
+                          autoComplete="off"
                           className={`form-control ${(meta.touched && meta.error) || registerFailed ? 'is-invalid' : ''}`}
                         />
                         <label htmlFor="password2">{t('forms.repeatPassword')}</label>
